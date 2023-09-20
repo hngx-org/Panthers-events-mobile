@@ -4,4 +4,7 @@
     <string name="create_event">Create Event</string>
     <string name="starts">Starts</string>
     <string name="ends">Ends</string>
+    <string name="select_groups">Select groups</string>
+    <string name="add_location">Add location</string>
+    <string name="todo">TODO</string>
 </resources>
