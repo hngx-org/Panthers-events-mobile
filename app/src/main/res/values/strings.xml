@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Panther-Events-App</string>
+    <string name="type_event_description">Type event description</string>
+    <string name="create_event">Create Event</string>
+    <string name="starts">Starts</string>
+    <string name="ends">Ends</string>
 </resources>
