@@ -12,7 +12,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -60,7 +68,21 @@ fun MyPeopleScreen(
                     containerColor = Color(0xFFFFF2E9)
                 ),
             )
-        }
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { /*TODO*/ },
+                containerColor = Color.Black,
+                shape = CircleShape
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = null,
+                    tint = Color(0xFFFFF2E9)
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.End
     ) {
         MyPeopleSection(modifier = modifier.padding(it))
     }
@@ -140,7 +162,8 @@ fun MyPeopleItem(
 
             if (isEventPresent){
                 Surface (
-                    modifier = modifier.align(Alignment.End)
+                    modifier = modifier
+                        .align(Alignment.End)
                         .height(18.dp)
                         .width(59.dp)
                         .fillMaxHeight(),
