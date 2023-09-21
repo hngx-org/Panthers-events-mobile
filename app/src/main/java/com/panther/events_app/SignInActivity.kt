@@ -11,6 +11,11 @@ class SignInActivity : AppCompatActivity() {
         signInBinding = ActivitySignInBinding.inflate(layoutInflater)
         val view = signInBinding.root
         setContentView(view)
+        if (savedInstanceState == null) {
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(signInBinding.fragmentContainer.id, SignInFragment())
+            fragmentTransaction.commit()
+        }
 
 
     }

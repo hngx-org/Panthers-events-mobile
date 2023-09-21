@@ -4,4 +4,6 @@
     <string name="welcome_on_board">Welcome on board!</string>
     <string name="sign_in_heading">Sign in or Create an account</string>
     <string name="continue_with_google">Continue with Google</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
