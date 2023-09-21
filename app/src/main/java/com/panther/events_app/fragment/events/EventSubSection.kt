@@ -1,4 +1,4 @@
-package com.panther.events_app
+package com.panther.events_app.fragment.events
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.panther.events_app.databinding.FragmentEventSubSectionBinding
+import com.panther.events_app.getMyPeopleEventList
 
 
 class EventSubSection : Fragment() {

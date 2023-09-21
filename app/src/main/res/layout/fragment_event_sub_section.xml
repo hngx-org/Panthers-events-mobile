@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/some_background"
-    tools:context=".EventSubSection">
+    tools:context=".EventSubSection"
+    android:background="@color/background"
+   >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/back_btn_holder"

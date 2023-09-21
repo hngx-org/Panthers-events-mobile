@@ -4,14 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="PrimaryColor">#FFB700</color>
     <color name="SecondaryColor">#00C352</color>
+    <color name="background">#FFF2E9</color>
+    <color name="accent">#FFF2E9</color>
     <color name="red">#FF474F</color>
     <color name="orange">#FF5500</color>
     <color name="blue">#3300FF</color>
 
-    <color name="some_pink">#FF474F</color>
-    <color name="some_orange">#FF5500</color>
-    <color name="some_blue">#3300FF</color>
-    <color name="some_yellow">#FFB700</color>
-    <color name="some_green">#00C352</color>
-    <color name="some_background">#FFF2E9</color>
 </resources>
