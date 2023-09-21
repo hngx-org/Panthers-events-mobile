@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -49,6 +50,14 @@ class TimelineFragment : Fragment() {
         }.attach()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.floatingActionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_timeline_dest_to_create_event_dest)
+        }
     }
 
     override fun onDestroy() {
