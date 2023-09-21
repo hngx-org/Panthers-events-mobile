@@ -1,4 +1,4 @@
-package com.panther.events_app
+package com.panther.events_app.fragment.events
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.panther.events_app.MyPeopleEvent
+import com.panther.events_app.R
 import com.panther.events_app.databinding.TimelineEventViewholderBinding
 
 class MyPeopleEventAdapter() : ListAdapter<MyPeopleEvent, MyPeopleEventAdapter.ViewHolder>(

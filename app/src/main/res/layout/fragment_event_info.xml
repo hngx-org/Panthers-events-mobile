@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/some_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".EventInfo">
+    tools:context=".fragment.events.EventInfo">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

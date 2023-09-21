@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:padding="20dp"
-    tools:context=".CreateEventFragment">
+    tools:context=".fragment.createevent.CreateEventFragment">
 
 
     <ImageButton
