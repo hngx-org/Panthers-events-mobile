@@ -36,14 +36,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.panther.events_app.R
+import com.panther.events_app.presentation.navigation.Screens
 
 
-@Preview
+//@Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyPeopleScreen(
     modifier: Modifier = Modifier,
+    navController: NavController,
 ) {
 
     Scaffold(
@@ -71,7 +74,9 @@ fun MyPeopleScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigate(Screens.AddMyPeopleScreen.name)
+                },
                 containerColor = Color.Black,
                 shape = CircleShape
             ) {
@@ -101,12 +106,22 @@ fun MyPeopleSection(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            MyPeopleItem(text = "YBNL Mafia", icon = R.drawable.glasses_vector, color = Color(0xFFFFB700))
-            MyPeopleItem(text = "Techies", icon = R.drawable.people_vector, color = Color(0xFFFF5500), isEventPresent = true)
+            MyPeopleItem(
+                text = "YBNL Mafia",
+                icon = R.drawable.glasses_vector,
+                color = Color(0xFFFFB700)
+            )
+            MyPeopleItem(
+                text = "Techies",
+                icon = R.drawable.people_vector,
+                color = Color(0xFFFF5500),
+                isEventPresent = true
+            )
         }
     }
 }
 
+//@Preview
 @Composable
 fun MyPeopleItem(
     modifier: Modifier = Modifier,
@@ -137,7 +152,7 @@ fun MyPeopleItem(
         ) {
             Spacer(modifier = Modifier.height(20.dp))
             Image(
-                modifier= Modifier
+                modifier = Modifier
 //                    .padding(1.dp)
                     .width(78.57143.dp)
                     .height(55.dp),
@@ -160,19 +175,19 @@ fun MyPeopleItem(
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            if (isEventPresent){
-                Surface (
+            if (isEventPresent) {
+                Surface(
                     modifier = modifier
                         .align(Alignment.End)
                         .height(18.dp)
                         .width(59.dp)
                         .fillMaxHeight(),
                     color = Color.Black
-                ){
+                ) {
                     Column(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
-                    ){
+                    ) {
                         Text(
                             modifier = Modifier,
 //                            .width(42.dp)
