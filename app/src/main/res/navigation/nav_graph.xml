@@ -17,7 +17,11 @@
     <fragment
         android:id="@+id/my_people_dest"
         android:name="com.panther.events_app.presentation.screens.my_people.MyPeopleFragment"
-        android:label="My People" />
+        android:label="My People" >
+        <action
+            android:id="@+id/action_my_people_dest_to_eventSubSection"
+            app:destination="@id/eventSubSection" />
+    </fragment>
     <fragment
         android:id="@+id/calendar_dest"
         android:name="com.panther.events_app.presentation.screens.Calendar.CalendarFragment"
@@ -30,12 +34,16 @@
 
     <fragment
         android:id="@+id/eventInfo"
-        android:name="com.panther.events_app.EventInfo"
+        android:name="com.panther.events_app.fragment.events.EventInfo"
         android:label="fragment_event_info"
         tools:layout="@layout/fragment_event_info" />
     <fragment
         android:id="@+id/eventSubSection"
-        android:name="com.panther.events_app.EventSubSection"
+        android:name="com.panther.events_app.fragment.events.EventSubSection"
         android:label="fragment_event_sub_section"
-        tools:layout="@layout/fragment_event_sub_section" />
+        tools:layout="@layout/fragment_event_sub_section" >
+        <action
+            android:id="@+id/action_eventSubSection_to_eventInfo"
+            app:destination="@id/eventInfo" />
+    </fragment>
 </navigation>

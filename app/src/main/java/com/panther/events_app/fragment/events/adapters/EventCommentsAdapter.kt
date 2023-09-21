@@ -1,4 +1,4 @@
-package com.panther.events_app.fragment.events
+package com.panther.events_app.fragment.events.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.panther.events_app.EventComments
+import com.panther.events_app.models.EventComments
 import com.panther.events_app.R
 import com.panther.events_app.databinding.EventCommentsViewholderBinding
 

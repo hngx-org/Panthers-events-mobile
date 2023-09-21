@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".EventSubSection"
+    tools:context=".fragment.events.EventSubSection"
     android:background="@color/background"
    >
 
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/edit_btn"
+                android:id="@+id/back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
@@ -55,10 +55,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Event"
+        android:text="Techies"
+        android:fontFamily="@font/space_grotesk_medium"
         android:textColor="?attr/colorOnSurface"
         android:textSize="24sp"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -69,6 +70,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="10 members"
+        android:fontFamily="@font/poppins_regular"
         android:textColor="?attr/colorOnSurface"
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="@+id/event_header_text"

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.panther.events_app.databinding.FragmentEventInfoBinding
+import com.panther.events_app.fragment.events.adapters.EventCommentsAdapter
 import com.panther.events_app.getMyPeopleEventComments
 
 class EventInfo : Fragment() {
@@ -26,8 +27,6 @@ class EventInfo : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.eventCommentsRv.adapter = commentsAdapter
         commentsAdapter.submitList(getMyPeopleEventComments())
-        binding.eventCommentsRv.setOnClickListener{
-            //findNavController().navigate(R.id.eventSubSection)
-        }
+
     }
 }
