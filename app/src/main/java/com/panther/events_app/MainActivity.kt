@@ -3,17 +3,11 @@ package com.panther.events_app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.findNavController
 import androidx.navigation.NavDestination
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import com.panther.events_app.bottom_nav.BottomNavAdapter
-import com.panther.events_app.bottom_nav.BottomNavItem
-import com.panther.events_app.bottom_nav.BottomNavItem.Companion.getIcon
 import com.panther.events_app.databinding.ActivityMainBinding
 
 const val CURRENT_DESTINATION_ID = "current destination ID"
@@ -22,10 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
-    private val bottomNavAdapter by lazy { BottomNavAdapter() }
     private lateinit var mainCurrentDestination: NavDestination
-    private lateinit var fragmentList: List<BottomNavItem>
-    private lateinit var editableFragmentList: MutableList<BottomNavItem>
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
@@ -37,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.bottomNavRv.adapter = bottomNavAdapter
+       // binding.bottomNavRv.adapter = bottomNavAdapter
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.eventSubSection,
@@ -52,55 +43,55 @@ class MainActivity : AppCompatActivity() {
             mainCurrentDestination = it
         }
 
-        fragmentList = appBarConfiguration.topLevelDestinations.map {
-            BottomNavItem(
-                title = it,
-                icon = getIcon(it),
-                isSelected = false
-            )
-        }.reversed()
-
-
-        editableFragmentList = mutableListOf()
-        editableFragmentList.add(
-            BottomNavItem(
-                title = mainCurrentDestination.id,
-                icon = mainCurrentDestination.id,
-                isSelected = true
-            )
-        )
-        toggleBottomNav(mainCurrentDestination.id)
+        toggleBottomNavResources(mainCurrentDestination.id)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             mainCurrentDestination = destination
-            toggleBottomNav(mainCurrentDestination.id)
+            toggleBottomNavResources(mainCurrentDestination.id)
 
         }
 
         savedInstanceState?.let { bundle ->
             val currentDestination =
                 bundle.getInt(CURRENT_DESTINATION_ID, mainCurrentDestination.id)
-            toggleBottomNav(currentDestination)
+            toggleBottomNavResources(currentDestination)
         }
 
-        bottomNavAdapter.adapterClickListener { fragId ->
-            navController.navigate(fragId)
-        }
-
-    }
-
-    private fun toggleBottomNav(destination: Int) {
-        val currentFragment =
-            editableFragmentList.find { it.title == destination } ?: BottomNavItem()
-        val newList = mutableListOf<BottomNavItem>()
-        fragmentList.forEach {
-            if (it.title == currentFragment.title) {
-                newList.add(it.copy(isSelected = true))
-            } else {
-                newList.add(it)
+        binding.apply {
+            timelineIcon.setOnClickListener {
+                navController.navigate(R.id.eventSubSection)
+            }
+            peopleIcon.setOnClickListener {
+                navController.navigate(R.id.eventInfo)
             }
         }
-        editableFragmentList = newList
-        bottomNavAdapter.submitList(editableFragmentList)
-        Log.d("JPETAG", "onCreate: $editableFragmentList")
+    }
+
+    private fun toggleBottomNavResources(destination:Int){
+        binding.apply {
+            when (destination) {
+                R.id.eventSubSection -> {
+                    timeLineBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.some_yellow))
+                    timelineIcon.setImageResource(R.drawable.timeline_filled_icon)
+                    peopleBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    peopleIcon.setImageResource(R.drawable.people_icon)
+                    calendarBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    calendarIcon.setImageResource(R.drawable.calendar_icon)
+                    settingsBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    settingsIcon.setImageResource(R.drawable.settings_icon)
+                }
+                R.id.eventInfo -> {
+                    timeLineBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    timelineIcon.setImageResource(R.drawable.timeline_icon)
+                    peopleBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.some_yellow))
+                    peopleIcon.setImageResource(R.drawable.people_filled_icon)
+                    calendarBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    calendarIcon.setImageResource(R.drawable.calendar_icon)
+                    settingsBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    settingsIcon.setImageResource(R.drawable.settings_icon)
+                }
+                else->Unit
+
+            }
+        }
     }
 }
