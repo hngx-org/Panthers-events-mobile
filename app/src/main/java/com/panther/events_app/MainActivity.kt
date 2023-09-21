@@ -3,14 +3,16 @@ package com.panther.events_app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import com.panther.events_app.databinding.ActivityMainBinding
 
-const val CURRENT_DESTINATION_ID = "current destination ID"
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -47,7 +49,11 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             mainCurrentDestination = destination
             toggleBottomNavResources(mainCurrentDestination.id)
-
+            if (!appBarConfiguration.topLevelDestinations.contains(destination.id)){
+                binding.bottomNav.visibility = View.GONE
+            }else{
+                binding.bottomNav.visibility = View.VISIBLE
+            }
         }
 
         savedInstanceState?.let { bundle ->

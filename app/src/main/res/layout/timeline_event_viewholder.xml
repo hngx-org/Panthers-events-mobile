@@ -155,10 +155,14 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/event_rationale_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="I will join"
+                    android:textAlignment="center"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="16dp"
                     android:textStyle="bold"

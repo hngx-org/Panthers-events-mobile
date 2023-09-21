@@ -16,15 +16,17 @@ class EventCommentsAdapter() : ListAdapter<EventComments, EventCommentsAdapter.V
 
         fun bind(comment: EventComments) {
 
-                if (comment.image == null){
-                    binding.commentImage.visibility = View.GONE
+            binding.apply {
+                if (comment.image == null) {
+                    commentImage.visibility = View.GONE
                 }
-                binding.commentImage.visibility = View.VISIBLE
+                commentImage.visibility = View.VISIBLE
                 comment.image?.let {
-                    binding.commentImage.setImageResource(it)
+                    commentImage.setImageResource(it)
                 }
-                binding.eventCommentText.text = comment.comment
-
+                eventCommentText.text = comment.comment
+                profileImg.clipToOutline = true
+            }
         }
 
     }

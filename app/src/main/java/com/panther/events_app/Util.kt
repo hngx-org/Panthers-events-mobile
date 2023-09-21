@@ -1,5 +1,9 @@
 package com.panther.events_app
 
+
+
+const val CURRENT_DESTINATION_ID = "current destination ID"
+
 data class MyPeopleEvent(
     val title:String,
     val location:String,

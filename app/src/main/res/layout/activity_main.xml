@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/some_background"
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
@@ -34,7 +35,7 @@
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/timeline_holder"
-            android:layout_width="92dp"
+            android:layout_width="90dp"
             android:layout_height="50dp"
             android:background="@drawable/bottom_nav_corner_outline"
             android:clipToOutline="true"
@@ -73,7 +74,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/people_holder"
-            android:layout_width="92dp"
+            android:layout_width="90dp"
             android:layout_height="50dp"
             android:background="@drawable/bottom_nav_corner_outline"
             android:clipToOutline="true"
@@ -111,7 +112,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/calendar_holder"
-            android:layout_width="92dp"
+            android:layout_width="90dp"
             android:layout_height="50dp"
             android:background="@drawable/bottom_nav_corner_outline"
             android:clipToOutline="true"
@@ -150,7 +151,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/settings_holder"
-            android:layout_width="92dp"
+            android:layout_width="90dp"
             android:layout_height="50dp"
             android:background="@drawable/bottom_nav_corner_outline"
             android:clipToOutline="true"
