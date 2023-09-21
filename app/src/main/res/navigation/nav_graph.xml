@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/timeline_dest">
+
+    <fragment
+        android:id="@+id/timeline_dest"
+        android:name="com.panther.events_app.fragment.timeline.TimelineFragment"
+        android:label="Timeline"
+        tools:layout="@layout/fragment_timeline" >
+        <action
+            android:id="@+id/action_timeline_dest_to_create_event_dest"
+            app:destination="@id/create_event_dest" />
+    </fragment>
+    <fragment
+        android:id="@+id/my_people_dest"
+        android:name="com.panther.events_app.presentation.screens.my_people.MyPeopleFragment"
+        android:label="My People" />
+    <fragment
+        android:id="@+id/calendar_dest"
+        android:name="com.panther.events_app.presentation.screens.Calendar.CalendarFragment"
+        android:label="Calendar" />
+    <fragment
+        android:id="@+id/create_event_dest"
+        android:name="com.panther.events_app.fragment.create_event.CreateEventFragment"
+        android:label="fragment_create_event"
+        tools:layout="@layout/fragment_create_event" />
+</navigation>
