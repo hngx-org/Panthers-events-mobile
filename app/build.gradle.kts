@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("androidx.navigation.safeargs")
     id("com.google.devtools.ksp")
 
 }
@@ -61,4 +62,6 @@ dependencies {
 
     // Compose
     implementation("androidx.compose.ui:ui:1.5.1")
+
+    implementation("androidx.compose.runtime:runtime:1.5.1")
 }

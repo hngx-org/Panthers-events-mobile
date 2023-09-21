@@ -1,4 +1,4 @@
-package com.panther.events_app.fragment.events
+package com.panther.events_app.fragment.events.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.panther.events_app.MyPeopleEvent
+import com.panther.events_app.models.MyPeopleEvent
 import com.panther.events_app.R
 import com.panther.events_app.databinding.TimelineEventViewholderBinding
 
@@ -17,12 +17,17 @@ class MyPeopleEventAdapter() : ListAdapter<MyPeopleEvent, MyPeopleEventAdapter.V
         private val binding = TimelineEventViewholderBinding.bind(view)
 
         fun bind(event: MyPeopleEvent) {
-            binding.eventTitleText.text = event.title
-            binding.eventLocationText.text = event.location
-            binding.eventDurationText.text = event.duration
-            binding.eventDateText.text = event.date
-            binding.eventCommentsText.setOnClickListener {
-                listener?.let { it(event) }
+            binding.apply {
+               eventTitleText.text = event.title
+               eventLocationText.text = event.location
+               eventDurationText.text = event.duration
+               eventDateText.text = event.date
+               image1.clipToOutline = true
+               image2.clipToOutline = true
+               image3.clipToOutline = true
+               eventCommentsText.setOnClickListener {
+                    listener?.let { it(event) }
+                }
             }
 
         }

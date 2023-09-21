@@ -1,19 +1,10 @@
 package com.panther.events_app
 
-data class MyPeopleEvent(
-    val title:String,
-    val location:String,
-    val duration:String,
-    val date:String,
-    val commentsCount:String,
+import com.panther.events_app.models.EventComments
+import com.panther.events_app.models.MyPeopleEvent
 
-    )
 
-data class EventComments(
-    val comment:String,
-    val image:Int?
-)
-
+const val CURRENT_DESTINATION_ID = "current destination ID"
 
 
 fun getMyPeopleEventList():List<MyPeopleEvent>{
@@ -40,14 +31,18 @@ fun getMyPeopleEventComments():List<EventComments>{
         )
         commentsList.add(event)
     }
-    commentsList.add(EventComments(
+    commentsList.add(
+        EventComments(
         comment = "I defo won’t miss this",
         image = R.drawable.comment_image_1
-    ))
-    commentsList.add(EventComments(
+    )
+    )
+    commentsList.add(
+        EventComments(
         comment = "Me too",
         image = R.drawable.comment_image_1
-    ))
+    )
+    )
 
     return commentsList
 }
