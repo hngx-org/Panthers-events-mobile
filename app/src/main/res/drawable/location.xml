@@ -1,4 +1,5 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     android:width="16dp"
     android:height="16dp"
     android:viewportWidth="16"
@@ -19,6 +20,28 @@
         android:strokeWidth="0.833333"
         android:fillColor="#00000000"
         android:strokeColor="#000000"
+=======
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <group>
+    <clip-path
+        android:pathData="M0,0h24v24h-24z"/>
+    <path
+        android:pathData="M9,11C9,11.796 9.316,12.559 9.879,13.121C10.441,13.684 11.204,14 12,14C12.796,14 13.559,13.684 14.121,13.121C14.684,12.559 15,11.796 15,11C15,10.204 14.684,9.441 14.121,8.879C13.559,8.316 12.796,8 12,8C11.204,8 10.441,8.316 9.879,8.879C9.316,9.441 9,10.204 9,11Z"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.75"
+        android:fillColor="#00000000"
+        android:strokeColor="#212121"
+        android:strokeLineCap="round"/>
+    <path
+        android:pathData="M17.657,16.657L13.414,20.9C13.039,21.275 12.531,21.485 12,21.485C11.47,21.485 10.962,21.275 10.587,20.9L6.343,16.657C5.224,15.538 4.462,14.113 4.154,12.561C3.845,11.009 4.003,9.401 4.609,7.939C5.215,6.477 6.24,5.228 7.555,4.349C8.871,3.469 10.418,3 12,3C13.582,3 15.129,3.469 16.444,4.349C17.76,5.228 18.785,6.477 19.391,7.939C19.997,9.401 20.155,11.009 19.846,12.561C19.538,14.113 18.776,15.538 17.657,16.657Z"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.75"
+        android:fillColor="#00000000"
+        android:strokeColor="#212121"
+>>>>>>> create_event_feature
         android:strokeLineCap="round"/>
   </group>
 </vector>
