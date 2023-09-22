@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/calendar_dest"
-        android:name="com.panther.events_app.presentation.screens.Calendar.CalendarFragment"
+        android:name="com.panther.events_app.presentation.screens.calendar.CalendarFragment"
         android:label="Calendar" />
     <fragment
         android:id="@+id/create_event_dest"
@@ -45,5 +45,22 @@
         <action
             android:id="@+id/action_eventSubSection_to_eventInfo"
             app:destination="@id/eventInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/settinggs_dest"
+        android:name="com.panther.events_app.presentation.screens.settings.SettingsFragment"
+        android:label="Settings" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.panther.events_app.fragment.authentication.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.panther.events_app.fragment.authentication.SplashScreen"
+        android:label="SplashScreen" >
+        <action
+            android:id="@+id/action_splashScreen_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
 </navigation>

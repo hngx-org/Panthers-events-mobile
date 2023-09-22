@@ -1,4 +1,4 @@
-package com.panther.events_app
+package com.panther.events_app.fragment.authentication
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

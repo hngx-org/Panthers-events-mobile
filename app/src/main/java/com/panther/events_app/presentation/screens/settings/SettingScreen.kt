@@ -27,8 +27,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.panther.events_app.R
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -163,10 +165,12 @@ fun TopAppBar() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)) {
-        Text(text = "Settings", style= TestStyle(
+        Text(text = "Settings", style = TextStyle(
             fontSize = 30.sp,
             fontWeight = FontWeight.Normal
-        ))
+        )
+
+        )
     }
 }
 

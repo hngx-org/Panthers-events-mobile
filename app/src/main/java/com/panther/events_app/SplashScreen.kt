@@ -8,16 +8,16 @@ import android.os.Looper
 import com.panther.events_app.databinding.ActivitySplashScreenBinding
 
 class SplashScreen : AppCompatActivity() {
-    lateinit var spalshScreenBinding: ActivitySplashScreenBinding
+    lateinit var splashScreenBinding: ActivitySplashScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        spalshScreenBinding = ActivitySplashScreenBinding.inflate(layoutInflater)
-        val view = spalshScreenBinding.root
+        splashScreenBinding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        val view = splashScreenBinding.root
         setContentView(view)
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed(object:Runnable{
             override fun run() {
-                val intent = Intent(this@SplashScreen,SignInActivity::class.java)
+                val intent = Intent(this@SplashScreen, MainActivity::class.java)
                 startActivity(intent)
             }
 
