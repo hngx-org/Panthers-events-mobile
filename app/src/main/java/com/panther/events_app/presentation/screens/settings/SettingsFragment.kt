@@ -1,16 +1,12 @@
-package com.panther.events_app.presentation.screens.my_people
-
+package com.panther.events_app.presentation.screens.settings
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
-import com.panther.events_app.presentation.navigation.Navigation
 
-class MyPeopleFragment : Fragment() {
-
+class SettingsFragment : Fragment() {
 
     private lateinit var composeView: ComposeView
 
@@ -28,8 +24,7 @@ class MyPeopleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         composeView.setContent {
-//            MyPeopleScreen()
-            Navigation()
+            SettingScreen()
         }
     }
 }
