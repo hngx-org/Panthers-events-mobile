@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/timeline_dest">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/timeline_dest"
@@ -54,13 +54,17 @@
         android:id="@+id/signInFragment"
         android:name="com.panther.events_app.fragment.authentication.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
-    <fragment
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_timeline_dest"
+            app:destination="@id/timeline_dest" />
+    </fragment>
+    <!--<fragment
         android:id="@+id/splashScreen"
         android:name="com.panther.events_app.fragment.authentication.SplashScreen"
         android:label="SplashScreen" >
         <action
             android:id="@+id/action_splashScreen_to_signInFragment"
             app:destination="@id/signInFragment" />
-    </fragment>
+    </fragment>-->
 </navigation>

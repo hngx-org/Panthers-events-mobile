@@ -42,7 +42,7 @@ fun SettingScreen(){
     ) {
 
         Column(
-            modifier = Modifier.fillMaxSize().padding(top = 42.dp),
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
             ) {
             Card(
@@ -165,11 +165,10 @@ fun TopAppBar() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)) {
-        Text(text = "Settings", style = TextStyle(
+        Text(text = "Settings", style= TextStyle(
             fontSize = 30.sp,
             fontWeight = FontWeight.Normal
         )
-
         )
     }
 }
