@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,6 +38,7 @@ import com.panther.events_app.R
 @Composable
 fun SettingScreen(){
     Scaffold(
+        containerColor = Color(0xFFFFF2E9),
         topBar = { TopAppBar()}
     ) {
 
@@ -50,7 +50,7 @@ fun SettingScreen(){
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(top = 62.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
                     .border(2.dp, color = Color.Black)
             ) {
                 Row(modifier = Modifier.fillMaxWidth(),verticalAlignment = Alignment.CenterVertically) {
@@ -60,8 +60,8 @@ fun SettingScreen(){
                             contentDescription = "profile icon"
                         )
                         Column(modifier = Modifier.padding(start = 8.dp)){
-                            Text(text = "Salome name", style = TextStyle(fontSize = 24.sp))
-                            Text(text = "salome@gmail.com",style = TextStyle(fontSize = 20.sp))
+                            Text(text = "Salome", style = TextStyle(fontSize = 24.sp))
+                            Text(text = "salome@gmail.com",style = TextStyle(fontSize = 16.sp))
                         }
                     }
                     Image(
@@ -166,10 +166,11 @@ fun TopAppBar() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)) {
-        Text(text = "Settings", style= TextStyle(
+        Text(text = "Settings", style = TextStyle(
             fontSize = 30.sp,
             fontWeight = FontWeight.Normal
-        ))
+        )
+        )
     }
 }
 
@@ -193,7 +194,7 @@ fun SettingItem(
             )
             Text(text= text,
                 style = TextStyle(
-                    fontSize =20.sp
+                    fontSize = 16.sp
                 ),
                 modifier = Modifier.padding(start = 8.dp))
         }
