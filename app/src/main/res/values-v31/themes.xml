@@ -1,18 +1,15 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
     <style name="Base.Theme.PantherEventsApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/accent</item>
+        <item name="colorPrimary">@color/accent</item>
 
         //Splash screen implementation
-        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/white</item>
+        <item name="android:windowSplashScreenBackground">@color/white</item>
         <item name="android:windowSplashScreenAnimationDuration">1000</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/app_splash</item>
 
 
     </style>
-
-    <style name="Theme.PantherEventsApp" parent="Base.Theme.PantherEventsApp" />
-
-    
 </resources>

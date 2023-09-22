@@ -38,18 +38,19 @@ import com.panther.events_app.R
 @Composable
 fun SettingScreen(){
     Scaffold(
+        containerColor = Color(0xFFFFF2E9),
         topBar = { TopAppBar()}
     ) {
 
         Column(
-            modifier = Modifier.fillMaxSize().padding(top = 42.dp),
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
             ) {
             Card(
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(top = 62.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
                     .border(2.dp, color = Color.Black)
             ) {
                 Row(modifier = Modifier.fillMaxWidth(),verticalAlignment = Alignment.CenterVertically) {
@@ -59,8 +60,8 @@ fun SettingScreen(){
                             contentDescription = "profile icon"
                         )
                         Column(modifier = Modifier.padding(start = 8.dp)){
-                            Text(text = "Salome name", style = TextStyle(fontSize = 24.sp))
-                            Text(text = "salome@gmail.com",style = TextStyle(fontSize = 20.sp))
+                            Text(text = "Salome", style = TextStyle(fontSize = 24.sp))
+                            Text(text = "salome@gmail.com",style = TextStyle(fontSize = 16.sp))
                         }
                     }
                     Image(
@@ -194,7 +195,7 @@ fun SettingItem(
             )
             Text(text= text,
                 style = TextStyle(
-                    fontSize =20.sp
+                    fontSize = 16.sp
                 ),
                 modifier = Modifier.padding(start = 8.dp))
         }

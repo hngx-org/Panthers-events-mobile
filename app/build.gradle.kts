@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id ("androidx.navigation.safeargs")
     id("com.google.devtools.ksp")
+    id ("kotlin-parcelize")
 
 }
 
@@ -69,5 +70,11 @@ dependencies {
 
     val nav_version = "2.6.0"
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
 }
