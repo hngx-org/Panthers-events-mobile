@@ -332,11 +332,68 @@
         android:clipChildren="false"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/comment_edit_text_holder"
         app:layout_constraintEnd_toEndOf="@+id/event_view_holder"
         app:layout_constraintStart_toStartOf="@+id/event_view_holder"
         app:layout_constraintTop_toBottomOf="@+id/event_view_holder"
         tools:itemCount="4"
         tools:listitem="@layout/event_comments_viewholder" />
+
+    <ImageView
+        android:id="@+id/add_image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:src="@drawable/image_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/comment_edit_text_holder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="?attr/colorOnSurface" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/comment_edit_text_holder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/event_holder_corner_outline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/record_btn"
+        app:layout_constraintStart_toEndOf="@+id/add_image_btn">
+
+
+        <EditText
+            android:id="@+id/comment_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@color/white"
+            android:fontFamily="@font/space_grotesk_medium"
+            android:hint="Type a message"
+            android:padding="10dp"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurface"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/record_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="10dp"
+        android:src="@drawable/mic_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/comment_edit_text_holder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/add_image_btn"
+        app:tint="?attr/colorOnSurface" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
