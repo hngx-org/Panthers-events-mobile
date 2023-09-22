@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -34,6 +35,10 @@ class TimelineFragment : Fragment() {
             isEnabled = true
             exitApp()
         }
+
+        val activity = (requireActivity() as AppCompatActivity)
+        activity.setSupportActionBar(binding.toolbar)
+        activity.supportActionBar?.title = "Timeline"
 
         viewPager = binding.pager
         tabLayout = binding.tabLayout
