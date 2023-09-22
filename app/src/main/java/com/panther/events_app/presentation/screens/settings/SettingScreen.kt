@@ -42,7 +42,7 @@ fun SettingScreen(){
     ) {
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(top = 42.dp),
             horizontalAlignment = Alignment.CenterHorizontally
             ) {
             Card(
