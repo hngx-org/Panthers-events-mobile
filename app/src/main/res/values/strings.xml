@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Panther-Events-App</string>
+    <string name="event_app_name">Wetin Dey Sup</string>
+    <string name="welcome_on_board">Welcome on board!</string>
+    <string name="sign_in_heading">Sign in or Create an account</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="timeline">Timeline</string>
 </resources>

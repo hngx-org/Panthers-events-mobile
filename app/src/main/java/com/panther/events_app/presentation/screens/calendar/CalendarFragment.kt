@@ -1,4 +1,4 @@
-package com.panther.events_app.presentation.screens.Calendar
+package com.panther.events_app.presentation.screens.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater

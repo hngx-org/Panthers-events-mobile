@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.timeline_dest,
                 R.id.my_people_dest,
                 R.id.calendar_dest,
+                R.id.settinggs_dest
                 )
         )
 
@@ -87,6 +88,9 @@ class MainActivity : AppCompatActivity() {
             calendarIcon.setOnClickListener {
                 navController.navigate(R.id.calendar_dest)
             }
+            settingsIcon.setOnClickListener {
+                navController.navigate(R.id.settinggs_dest)
+            }
         }
 
     }
@@ -112,7 +116,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.my_people_dest -> {
                     timeLineBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
                     timelineIcon.setImageResource(R.drawable.timeline_icon)
-                    peopleBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.PrimaryColor))
+                    peopleBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.orange))
                     peopleIcon.setImageResource(R.drawable.people_filled_icon)
                     calendarBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
                     calendarIcon.setImageResource(R.drawable.calendar_icon)
@@ -124,9 +128,19 @@ class MainActivity : AppCompatActivity() {
                     timelineIcon.setImageResource(R.drawable.timeline_icon)
                     peopleBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
                     peopleIcon.setImageResource(R.drawable.people_icon)
-                    calendarBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.PrimaryColor))
+                    calendarBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.SecondaryColor))
                     calendarIcon.setImageResource(R.drawable.calendar_filled_icon)
                     settingsBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    settingsIcon.setImageResource(R.drawable.settings_icon)
+                }
+                R.id.settinggs_dest -> {
+                    timeLineBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    timelineIcon.setImageResource(R.drawable.timeline_icon)
+                    peopleBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    peopleIcon.setImageResource(R.drawable.people_icon)
+                    calendarBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.white))
+                    calendarIcon.setImageResource(R.drawable.calendar_filled_icon)
+                    settingsBackground.setBackgroundColor(ContextCompat.getColor(this@MainActivity,R.color.blue))
                     settingsIcon.setImageResource(R.drawable.settings_icon)
                 }
                 else->Unit
