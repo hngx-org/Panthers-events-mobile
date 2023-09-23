@@ -1,9 +1,7 @@
-package com.panther.events_app.api
+package com.panther.events_app.arch_com
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
-import com.panther.events_app.getMyPeopleEventComments
 import com.panther.events_app.models.Resource
 import com.panther.events_app.models.group_event_model.CommentImageResponse
 import com.panther.events_app.models.group_event_model.GroupEventResponse
@@ -12,8 +10,6 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class EventsViewModel : ViewModel() {

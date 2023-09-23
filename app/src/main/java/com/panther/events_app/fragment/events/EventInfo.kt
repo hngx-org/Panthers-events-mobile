@@ -14,10 +14,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.panther.events_app.api.EventsViewModel
+import com.panther.events_app.arch_com.EventsViewModel
 import com.panther.events_app.databinding.FragmentEventInfoBinding
 import com.panther.events_app.fragment.events.adapters.EventCommentsAdapter
-import com.panther.events_app.getMyPeopleEventComments
 import com.panther.events_app.models.Resource
 import kotlinx.coroutines.launch
 

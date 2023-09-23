@@ -9,14 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.panther.events_app.api.EventsViewModel
+import com.panther.events_app.arch_com.EventsViewModel
 import com.panther.events_app.databinding.FragmentEventSubSectionBinding
 import com.panther.events_app.fragment.events.adapters.MyPeopleEventAdapter
-import com.panther.events_app.getMyPeopleEventList
 import com.panther.events_app.models.Resource
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 
 

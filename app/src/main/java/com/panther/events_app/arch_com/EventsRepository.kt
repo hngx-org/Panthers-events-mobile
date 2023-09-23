@@ -1,6 +1,7 @@
-package com.panther.events_app.api
+package com.panther.events_app.arch_com
 
 import android.util.Log
+import com.panther.events_app.api.RetrofitInstance
 import com.panther.events_app.models.Resource
 import com.panther.events_app.models.group_event_model.CommentImageResponse
 import com.panther.events_app.models.group_event_model.GroupEventResponse
