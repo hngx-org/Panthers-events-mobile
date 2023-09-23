@@ -170,7 +170,6 @@ fun TopAppBar() {
             fontSize = 30.sp,
             fontWeight = FontWeight.Normal
         )
-
         )
     }
 }
