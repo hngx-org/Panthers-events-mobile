@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_eventSubSection_to_eventInfo"
             app:destination="@id/eventInfo" />
+        <action
+            android:id="@+id/action_eventSubSection_to_create_event_dest"
+            app:destination="@id/create_event_dest" />
     </fragment>
     <fragment
         android:id="@+id/settinggs_dest"

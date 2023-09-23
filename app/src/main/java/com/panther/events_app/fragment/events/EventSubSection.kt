@@ -40,6 +40,10 @@ class EventSubSection : Fragment() {
             val route = EventSubSectionDirections.actionEventSubSectionToEventInfo(it.id)
             findNavController().navigate(route)
         }
+        binding.addEventFab.setOnClickListener {
+            val route = EventSubSectionDirections.actionEventSubSectionToCreateEventDest()
+            findNavController().navigate(route)
+        }
         binding.backBtn.setOnClickListener{
             findNavController().navigateUp()
         }

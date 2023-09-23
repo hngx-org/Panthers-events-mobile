@@ -160,6 +160,8 @@
         android:layout_marginBottom="35dp"
         android:backgroundTint="@color/black"
         android:src="@drawable/baseline_add"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+        style="@style/Widget.Material3.FloatingActionButton.Surface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/white" />
