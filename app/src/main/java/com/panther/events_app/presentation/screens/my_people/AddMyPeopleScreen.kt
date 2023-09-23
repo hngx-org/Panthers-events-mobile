@@ -86,13 +86,15 @@ fun ExtendedMyPeopleSection(
             MyPeopleItem(
                 text = "YBNL Mafia",
                 icon = R.drawable.glasses_vector,
-                color = Color(0xFFFFB700)
+                color = Color(0xFFFFB700),
+                onNextClick = {}
             )
             MyPeopleItem(
                 text = "Techies",
                 icon = R.drawable.people_vector,
                 color = Color(0xFFFF5500),
-                isEventPresent = true
+                isEventPresent = true,
+                onNextClick = {}
             )
         }
         Spacer(modifier = Modifier.height(15.dp))
@@ -104,13 +106,15 @@ fun ExtendedMyPeopleSection(
             MyPeopleItem(
                 text = "Medical Guys",
                 icon = R.drawable.medical_vector,
-                color =  Color(0xFF00C352)
+                color =  Color(0xFF00C352),
+                onNextClick = {}
             )
             MyPeopleItem(
                 text = "Ladies in Tech",
                 icon = R.drawable.ldies_in_tech_vector,
                 color = Color(0xFF3300FF),
-                isEventPresent = false
+                isEventPresent = false,
+                onNextClick = {}
             )
         }
         Spacer(modifier = Modifier.height(15.dp))
@@ -122,13 +126,15 @@ fun ExtendedMyPeopleSection(
             MyPeopleItem(
                 text = "Discord",
                 icon = R.drawable.discord_vector,
-                color = Color(0xFFFF474F)
+                color = Color(0xFFFF474F),
+                onNextClick = {}
             )
             MyPeopleItem(
                 text = "Lagos Tech",
                 icon = R.drawable.lagos_tech_vector,
                 color = Color(0xFF9823C9),
-                isEventPresent = false
+                isEventPresent = false,
+                onNextClick = {}
             )
         }
     }
