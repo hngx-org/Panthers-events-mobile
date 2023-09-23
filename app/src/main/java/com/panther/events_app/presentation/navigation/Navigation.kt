@@ -21,7 +21,7 @@ fun Navigation(
     ){
 
         composable(route = Screens.MyPeopleScreen.name){
-            MyPeopleScreen(navController = navController)
+          //  MyPeopleScreen()
         }
 
         composable(route = Screens.AddMyPeopleScreen.name){

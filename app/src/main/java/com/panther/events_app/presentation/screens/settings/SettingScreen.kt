@@ -151,6 +151,18 @@ fun SettingScreen(){
                         text = "About",
                         description = "About"
                     )
+                     Divider(
+                        thickness = 1.dp,
+                        color = Color.LightGray,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                    )
+                    SettingItem(
+                        icon = R.drawable.baseline_arrow_forward_ios_24,
+                        text = "Logout",
+                        description = "Logout"
+                    )
                 }
             }
 
@@ -170,7 +182,6 @@ fun TopAppBar() {
             fontSize = 30.sp,
             fontWeight = FontWeight.Normal
         )
-
         )
     }
 }
