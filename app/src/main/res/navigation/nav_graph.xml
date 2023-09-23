@@ -36,7 +36,11 @@
         android:id="@+id/eventInfo"
         android:name="com.panther.events_app.fragment.events.EventInfo"
         android:label="fragment_event_info"
-        tools:layout="@layout/fragment_event_info" />
+        tools:layout="@layout/fragment_event_info" >
+        <argument
+            android:name="eventId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/eventSubSection"
         android:name="com.panther.events_app.fragment.events.EventSubSection"

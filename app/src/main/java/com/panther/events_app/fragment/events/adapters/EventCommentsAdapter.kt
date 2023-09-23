@@ -6,27 +6,33 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.panther.events_app.models.EventComments
 import com.panther.events_app.R
 import com.panther.events_app.databinding.EventCommentsViewholderBinding
+import com.panther.events_app.models.group_event_model.CommentImageResponseItem
 
-class EventCommentsAdapter() : ListAdapter<EventComments, EventCommentsAdapter.ViewHolder>(
+class EventCommentsAdapter() : ListAdapter<CommentImageResponseItem, EventCommentsAdapter.ViewHolder>(
     diffObject
 ) {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = EventCommentsViewholderBinding.bind(view)
 
-        fun bind(comment: EventComments) {
+        fun bind(comment: CommentImageResponseItem) {
 
             binding.apply {
-                if (comment.image == null) {
+                if (comment.url.isEmpty()) {
                     commentImage.visibility = View.GONE
+                }else {
+                    commentImage.visibility = View.VISIBLE
+                    commentImage.load(comment.url){
+                        placeholder(R.drawable.image_icon)
+                        error(R.drawable.image_icon)
+                    }
                 }
-                commentImage.visibility = View.VISIBLE
-                comment.image?.let {
-                    commentImage.setImageResource(it)
-                }
-                eventCommentText.text = comment.comment
+
+
+                eventCommentText.text = "comment here"
                 profileImg.clipToOutline = true
             }
         }
@@ -48,13 +54,13 @@ class EventCommentsAdapter() : ListAdapter<EventComments, EventCommentsAdapter.V
     }
 
     companion object {
-        val diffObject = object : DiffUtil.ItemCallback<EventComments>() {
-            override fun areItemsTheSame(oldItem: EventComments, newItem: EventComments): Boolean {
-                return oldItem.comment == newItem.comment
+        val diffObject = object : DiffUtil.ItemCallback<CommentImageResponseItem>() {
+            override fun areItemsTheSame(oldItem: CommentImageResponseItem, newItem: CommentImageResponseItem): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: EventComments, newItem: EventComments): Boolean {
-                return oldItem.comment == newItem.comment && oldItem.image == newItem.image
+            override fun areContentsTheSame(oldItem: CommentImageResponseItem, newItem: CommentImageResponseItem): Boolean {
+                return oldItem.id == newItem.id && oldItem.url == newItem.url
             }
         }
     }

@@ -9,25 +9,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.panther.events_app.models.MyPeopleEvent
 import com.panther.events_app.R
 import com.panther.events_app.databinding.TimelineEventViewholderBinding
+import com.panther.events_app.models.group_event_model.GroupEventResponseItem
 
-class MyPeopleEventAdapter() : ListAdapter<MyPeopleEvent, MyPeopleEventAdapter.ViewHolder>(
+class MyPeopleEventAdapter() : ListAdapter<GroupEventResponseItem, MyPeopleEventAdapter.ViewHolder>(
     diffObject
 ) {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = TimelineEventViewholderBinding.bind(view)
 
-        fun bind(event: MyPeopleEvent) {
+        fun bind(event: GroupEventResponseItem) {
             binding.apply {
-               eventTitleText.text = event.title
-               eventLocationText.text = event.location
-               eventDurationText.text = event.duration
-               eventDateText.text = event.date
+               eventTitleText.text = event.event
+//               eventLocationText.text = event.location
+//               eventDurationText.text = event.duration
+//               eventDateText.text = event.date
                image1.clipToOutline = true
                image2.clipToOutline = true
                image3.clipToOutline = true
                eventCommentsText.setOnClickListener {
                     listener?.let { it(event) }
                 }
+                eventCommentsText.text = "${ event.commentCount } comments"
             }
 
         }
@@ -49,23 +51,23 @@ class MyPeopleEventAdapter() : ListAdapter<MyPeopleEvent, MyPeopleEventAdapter.V
     }
 
     companion object {
-        val diffObject = object : DiffUtil.ItemCallback<MyPeopleEvent>() {
-            override fun areItemsTheSame(oldItem: MyPeopleEvent, newItem: MyPeopleEvent): Boolean {
-                return oldItem.title == newItem.title
+        val diffObject = object : DiffUtil.ItemCallback<GroupEventResponseItem>() {
+            override fun areItemsTheSame(oldItem: GroupEventResponseItem, newItem: GroupEventResponseItem): Boolean {
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: MyPeopleEvent,
-                newItem: MyPeopleEvent
+                oldItem: GroupEventResponseItem,
+                newItem: GroupEventResponseItem
             ): Boolean {
-                return oldItem.title == newItem.title && oldItem.date == newItem.date
+                return oldItem.id == newItem.id && oldItem.event == newItem.event
             }
         }
     }
 
-    private var listener: ((MyPeopleEvent) -> Unit)? = null
+    private var listener: ((GroupEventResponseItem) -> Unit)? = null
 
-    fun adapterClickListener(listener: (MyPeopleEvent) -> Unit) {
+    fun adapterClickListener(listener: (GroupEventResponseItem) -> Unit) {
         this.listener = listener
     }
 

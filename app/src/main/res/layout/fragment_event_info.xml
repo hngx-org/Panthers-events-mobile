@@ -152,10 +152,10 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
-                android:text="Football game"
+                android:fontFamily="@font/space_grotesk_medium"
+                android:text="Some event"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20dp"
-                android:fontFamily="@font/space_grotesk_medium"
                 app:layout_constraintEnd_toStartOf="@+id/event_date_holder"
                 app:layout_constraintStart_toEndOf="@+id/category_img"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -166,11 +166,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/space_grotesk_medium"
                 android:text="Football game"
-                android:visibility="invisible"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20dp"
-                android:fontFamily="@font/space_grotesk_medium"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/category_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -200,7 +200,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:text="May 20"
+                        android:text="Date"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="16dp"
                         android:textStyle="bold"
@@ -220,10 +220,10 @@
                 android:layout_marginTop="5dp"
                 android:drawableStart="@drawable/time_duration"
                 android:drawablePadding="10dp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Friday 4 - 6pm"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="12dp"
-                android:fontFamily="@font/poppins_regular"
                 app:layout_constraintStart_toStartOf="@+id/event_location_text"
                 app:layout_constraintTop_toBottomOf="@+id/event_location_text" />
 
@@ -235,10 +235,10 @@
                 android:layout_marginTop="5dp"
                 android:drawableStart="@drawable/location"
                 android:drawablePadding="10dp"
-                android:text="Teslim Balogun Stadium"
+                android:fontFamily="@font/space_grotesk_medium"
+                android:text="Location"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="16dp"
-                android:fontFamily="@font/space_grotesk_medium"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/event_title_text" />
 
@@ -267,10 +267,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Checkbox to invite event"
-                android:textSize="16dp"
                 android:fontFamily="@font/space_grotesk_medium"
+                android:text="Checkbox to invite event"
                 android:textColor="?attr/colorOnSurface"
+                android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/check_box"
                 app:layout_constraintStart_toEndOf="@+id/check_box"
                 app:layout_constraintTop_toTopOf="@+id/check_box" />
@@ -304,12 +304,12 @@
                         android:background="?android:attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:focusable="true"
+                        android:fontFamily="@font/space_grotesk_medium"
                         android:padding="5dp"
                         android:text="Share"
+                        android:textAlignment="center"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="16dp"
-                        android:textAlignment="center"
-                        android:fontFamily="@font/space_grotesk_medium"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -322,6 +322,34 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/loading_anim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_border_line" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/empty_state_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="95dp"
+        android:textAlignment="center"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/comment_edit_text_holder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_view_holder"
+        tools:text="Some text" />
 
 
     <androidx.recyclerview.widget.RecyclerView
