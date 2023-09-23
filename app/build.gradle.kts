@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id ("androidx.navigation.safeargs")
     id("com.google.devtools.ksp")
+    id ("kotlin-parcelize")
 
 }
 
@@ -58,6 +59,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.2")
     implementation("androidx.compose.ui:ui-tooling-preview-android:1.5.1")
     implementation("androidx.compose.material3:material3:1.1.2")
+    implementation("androidx.tracing:tracing-perfetto-handshake:1.0.0-rc01")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -69,5 +71,11 @@ dependencies {
 
     val nav_version = "2.6.0"
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
 }

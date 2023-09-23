@@ -45,8 +45,9 @@ import com.panther.events_app.presentation.navigation.Screens
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyPeopleScreen(
-    modifier: Modifier = Modifier,
     navController: NavController,
+    onNextClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
 
     Scaffold(
@@ -89,14 +90,19 @@ fun MyPeopleScreen(
         },
         floatingActionButtonPosition = FabPosition.End
     ) {
-        MyPeopleSection(modifier = modifier.padding(it))
+        MyPeopleSection(
+            modifier = modifier.padding(it),
+            onNextClick = onNextClick
+        )
     }
 }
 
 @Composable
 fun MyPeopleSection(
-    modifier: Modifier = Modifier
-) {
+    onNextClick: () -> Unit,
+    modifier: Modifier = Modifier,
+
+    ) {
 
     Column(
         modifier = modifier.padding(15.dp)
@@ -109,13 +115,16 @@ fun MyPeopleSection(
             MyPeopleItem(
                 text = "YBNL Mafia",
                 icon = R.drawable.glasses_vector,
-                color = Color(0xFFFFB700)
+                color = Color(0xFFFFB700),
+                onNextClick = onNextClick
+
             )
             MyPeopleItem(
                 text = "Techies",
                 icon = R.drawable.people_vector,
                 color = Color(0xFFFF5500),
-                isEventPresent = true
+                isEventPresent = true,
+                onNextClick = onNextClick
             )
         }
     }
@@ -128,7 +137,8 @@ fun MyPeopleItem(
     text: String,
     @DrawableRes icon: Int,
     color: Color,
-    isEventPresent: Boolean = false
+    isEventPresent: Boolean = false,
+    onNextClick: () -> Unit
 ) {
 
     Surface(
@@ -139,7 +149,8 @@ fun MyPeopleItem(
 //            containerColor = color
 //        ),
         color = color,
-        shadowElevation = 6.dp
+        shadowElevation = 6.dp,
+        onClick = onNextClick
     ) {
 
 
