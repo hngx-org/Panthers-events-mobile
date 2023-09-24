@@ -6,11 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.panther.events_app.R
 import com.panther.events_app.adapter.TimelineAdapter
+import com.panther.events_app.arch_com.EventsViewModel
 import com.panther.events_app.databinding.FragmentTimelineEveryoneBinding
 import com.panther.events_app.models.Items
+import com.panther.events_app.models.Resource
+import kotlinx.coroutines.launch
 
 
 class TimelineEveryoneFragment : Fragment() {
@@ -18,6 +24,7 @@ class TimelineEveryoneFragment : Fragment() {
     private var _binding: FragmentTimelineEveryoneBinding? = null
     private val binding get() = _binding!!
     private lateinit var timelineAdapter: TimelineAdapter
+    private val eventsViewModel by activityViewModels<EventsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,13 +43,14 @@ class TimelineEveryoneFragment : Fragment() {
 
     private fun setupRecyclerView() {
 
-        val itemList = dummyData()
         val colorList = getColorList()
-        timelineAdapter = TimelineAdapter(itemList, colorList)
+        timelineAdapter = TimelineAdapter(colorList)
 
         binding.everyoneTimelineRv.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = timelineAdapter
+            eventsViewModel.getAllEvents
+            loadAllEvents()
         }
     }
     private fun getColorList(): List<Int> {
@@ -54,17 +62,34 @@ class TimelineEveryoneFragment : Fragment() {
             ContextCompat.getColor(requireActivity(), R.color.blue)
         )
     }
-    private fun dummyData(): List<Items> {
-        val list = ArrayList<Items>()
 
-        for (i in 1..10) {
-            list.add(
-                Items("Football game $i", "May 20, 2023 $i", "Friday 4 - 6pm $i",
-                    "Teslim Balogun Stadium $i", "2 weeks $i")
-            )
+    private fun loadAllEvents() {
+        lifecycleScope.launch {
+            eventsViewModel.getAllEvents.collect { state ->
+                binding.apply {
+                    when (state) {
+                        is Resource.Loading -> {
+                            progressBar.isVisible = true
+                            emptyStateTv.isVisible = false
+                        }
+
+                        is Resource.Successful -> {
+                            progressBar.isVisible = false
+                            emptyStateTv.isVisible = false
+
+                        }
+
+                        is Resource.Failure -> {
+                            progressBar.isVisible = false
+                            emptyStateTv.isVisible = true
+                            emptyStateTv.text = state.msg
+                        }
+                    }
+                }
+            }
         }
-        return list
     }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

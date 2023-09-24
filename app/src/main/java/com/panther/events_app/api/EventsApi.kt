@@ -1,10 +1,12 @@
 package com.panther.events_app.api
 
-import com.panther.events_app.models.Events
+import com.panther.events_app.models.events_model.EventResponse
+import com.panther.events_app.models.events_model.EventResponseItem
 import com.panther.events_app.models.group_event_model.CommentImageResponse
 import com.panther.events_app.models.group_event_model.GroupEventResponse
 import com.panther.events_app.models.group_event_model.GroupEventResponseItem
 import com.panther.events_app.models.group_event_model.PostCommentImage
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -12,8 +14,6 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface EventsApi {
-
-    suspend fun getEventsResponse() : Response<Events>
 
     @GET("groupevents")
     suspend fun getAllGroupEvents() : Response<GroupEventResponse>
@@ -37,5 +37,11 @@ interface EventsApi {
     suspend fun postGroupEventComment(
         @Path("commentId") id: Int
     ): Response<PostCommentImage>//docs doesn't return anything
+
+    @GET("events")
+    suspend fun getAllEvents() : Response<EventResponse>
+
+    @POST("login")
+    suspend fun authenticate()
 
 }

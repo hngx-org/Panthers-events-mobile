@@ -38,7 +38,7 @@ class TimelineFriendsFragment : Fragment() {
 
         val colorList = getColorList()
         val itemList = dummyData()
-        timelineAdapter = TimelineAdapter(itemList, colorList)
+        timelineAdapter = TimelineAdapter(colorList)
 
         binding.friendsTimelineRv.apply {
             layoutManager = LinearLayoutManager(activity)
