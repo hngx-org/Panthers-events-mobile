@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:drawable="@color/black"/>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/orange_button"/>
+            <corners android:radius="3dp"/>
+        </shape>
 
-    <item
-        android:drawable="@android:drawable/dialog_holo_light_frame"
-        android:right="4dp"
-        android:bottom="2dp"/>
+    </item>
+
 
 </layer-list>
