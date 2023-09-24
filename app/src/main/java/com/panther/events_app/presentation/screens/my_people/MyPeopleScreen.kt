@@ -45,6 +45,7 @@ import com.panther.events_app.presentation.navigation.Screens
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyPeopleScreen(
+    navController: NavController,
     onNextClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -75,7 +76,7 @@ fun MyPeopleScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-
+                    navController.navigate(Screens.AddMyPeopleScreen.name)
                 },
                 containerColor = Color.Black,
                 shape = CircleShape
@@ -101,7 +102,7 @@ fun MyPeopleSection(
     onNextClick: () -> Unit,
     modifier: Modifier = Modifier,
 
-) {
+    ) {
 
     Column(
         modifier = modifier.padding(15.dp)
