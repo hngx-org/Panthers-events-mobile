@@ -6,6 +6,7 @@
     <color name="SecondaryColor">#00C352</color>
     <color name="background">#FFF2E9</color>
     <color name="accent">#FFF2E9</color>
+    <color name="orange_button">#FF4910</color>
     <color name="red">#FF474F</color>
     <color name="orange">#FF5500</color>
     <color name="blue">#3300FF</color>
