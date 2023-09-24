@@ -1,6 +1,7 @@
 package com.panther.events_app.api
 
 import com.panther.events_app.models.Events
+import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.group_event_model.CommentImageResponse
 import com.panther.events_app.models.group_event_model.GroupEventResponse
 import com.panther.events_app.models.group_event_model.GroupEventResponseItem
@@ -14,6 +15,9 @@ import retrofit2.http.Path
 interface EventsApi {
 
     suspend fun getEventsResponse() : Response<Events>
+
+    @GET("login")
+    suspend fun authenticateUser() : Response<LoginResponse>
 
     @GET("groupevents")
     suspend fun getAllGroupEvents() : Response<GroupEventResponse>

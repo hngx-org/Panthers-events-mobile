@@ -7,6 +7,9 @@ import com.panther.events_app.models.MyPeopleEvent
 const val CURRENT_DESTINATION_ID = "current destination ID"
 const val BASE_URL = "https://octopus-app-nax2o.ondigitalocean.app/api/"
 
+const val EVENTS_PREFERENCE = "Events shared preference"
+const val SESSION_TOKEN = "Auth session token"
+
 
 fun getMyPeopleEventList():List<MyPeopleEvent>{
     val myPeopleEventList = mutableListOf<MyPeopleEvent>()

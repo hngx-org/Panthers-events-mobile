@@ -2,6 +2,7 @@ package com.panther.events_app.arch_com
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.Resource
 import com.panther.events_app.models.group_event_model.CommentImageResponse
 import com.panther.events_app.models.group_event_model.GroupEventResponse
@@ -16,6 +17,8 @@ class EventsViewModel : ViewModel() {
     private val eventsRepository = EventsRepository()
 
     var allGroupEvents = MutableStateFlow<Resource<GroupEventResponse>>(Resource.Loading())
+        private set
+    var userSessionInfo = MutableStateFlow<Resource<LoginResponse>>(Resource.Loading())
         private set
     var groupEventInfo = MutableStateFlow<Resource<GroupEventResponseItem>>(Resource.Loading())
         private set
@@ -105,6 +108,18 @@ class EventsViewModel : ViewModel() {
         }
 
     }
+
+    fun signIn() {
+        userSessionInfo.value = Resource.Loading()
+        viewModelScope.launch {
+            eventsRepository.signIn().collect{
+                userSessionInfo.value = Resource.Successful(LoginResponse().copy(session_token =it ))
+            }
+//            userSessionInfo.value = eventsRepository.authenticateUser()
+
+        }
+    }
+
 
 
 }
