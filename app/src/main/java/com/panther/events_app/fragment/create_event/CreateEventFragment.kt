@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import com.panther.events_app.R
 import com.panther.events_app.databinding.FragmentCreateEventBinding
 import java.util.Calendar
 
@@ -48,12 +52,10 @@ class CreateEventFragment : Fragment() {
 
 
 
-
-       /* binding?.btnDone?.setOnClickListener {
+        binding?.btnDone?.setOnClickListener {
             Toast.makeText(requireContext(),"Button Clicked",Toast.LENGTH_SHORT).show()
         }
 
-        */
 
 
 

@@ -67,7 +67,7 @@ dependencies {
     implementation("androidx.compose.runtime:runtime:1.5.1")
 
     val nav_version = "2.6.0"
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("androidx.navigation:navigation-compose:2.7.3")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
