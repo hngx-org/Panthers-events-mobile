@@ -39,7 +39,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
-            android:text="Football game"
+            android:text="--- ---"
             android:textColor="?attr/colorOnSurface"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -91,7 +91,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Date"
+                    android:text="---"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="16dp"
                     android:textStyle="bold"
@@ -100,7 +100,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="May 20" />
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -113,7 +113,7 @@
             android:layout_marginTop="5dp"
             android:drawableStart="@drawable/time_duration"
             android:drawablePadding="10dp"
-            android:text="Friday 4 - 6pm"
+            android:text="--- ---"
             android:textColor="?attr/colorOnSurface"
             android:fontFamily="@font/poppins_regular"
             android:textSize="12dp"
@@ -131,7 +131,7 @@
             android:layout_marginTop="5dp"
             android:drawableStart="@drawable/location"
             android:drawablePadding="10dp"
-            android:text="Location"
+            android:text="--- ---"
             android:textColor="?attr/colorOnSurface"
             android:textSize="16dp"
             android:maxLines="2"
@@ -236,7 +236,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="0. comments"
+            android:text="comments"
             android:fontFamily="@font/poppins_regular"
             android:textColor="?attr/colorOnSurface"
             app:layout_constraintBottom_toBottomOf="@+id/image_1"

@@ -2,6 +2,7 @@ package com.panther.events_app.fragment.events
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -18,9 +20,12 @@ import androidx.navigation.fragment.navArgs
 import com.panther.events_app.arch_com.EventsViewModel
 import com.panther.events_app.databinding.FragmentEventInfoBinding
 import com.panther.events_app.fragment.events.adapters.EventCommentsAdapter
+import com.panther.events_app.getDate
+import com.panther.events_app.getDuration
 import com.panther.events_app.models.Resource
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 class EventInfo : Fragment() {
 
     private lateinit var binding: FragmentEventInfoBinding
@@ -75,6 +80,7 @@ class EventInfo : Fragment() {
 
     }
 
+
     private fun loadGroupEventInfo() {
         lifecycleScope.launch {
             eventsViewModel.groupEventInfo.collect { state ->
@@ -89,10 +95,10 @@ class EventInfo : Fragment() {
                            progressBar.isVisible = false
                            emptyStateTv.isVisible = false
                             eventHeaderText.text = "Group name"
-                            eventTitleText.text = state.data?.title ?: "Some Event"
-                            eventLocationText.text = state.data?.location
-                            eventDurationText.text = state.data?.startTime +"--"+ state.data?.endTime
-                            eventDateText.text =state.data?.startDate +"--"+ state.data?.endDate
+                            eventTitleText.text = state.data?.title?.ifEmpty { "--- ---" } ?: "--- ---"
+                            eventLocationText.text = state.data?.location?.ifEmpty { "--- ---" } ?: "--- ---"
+                            eventDurationText.text = getDuration( state.data?.startDate,state.data?.endDate)
+                            eventDateText.text = getDate( state.data?.startDate)
                             eventsViewModel.loadGroupEventInfoComments()
                             loadGroupEventInfoComments()
 
