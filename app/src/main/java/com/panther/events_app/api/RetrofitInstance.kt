@@ -1,5 +1,6 @@
 package com.panther.events_app.api
 
+import android.util.Log
 import com.google.gson.GsonBuilder
 import com.panther.events_app.BASE_URL
 import com.panther.events_app.CURRENT_SESSION_TOKEN
@@ -38,8 +39,9 @@ class RetrofitInstance {
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
             .addInterceptor {chain ->
+                Log.d("AUTH", "pref: $eventsSharedPref")
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer $CURRENT_SESSION_TOKEN").build()
+                    .addHeader("Authorization", "Bearer $eventsSharedPref").build()
                 chain.proceed(request)
             }
             .build()

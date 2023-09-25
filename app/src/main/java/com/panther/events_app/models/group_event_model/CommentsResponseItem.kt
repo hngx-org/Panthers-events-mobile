@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName
 
 data class CommentsResponseItem(
     @SerializedName("body")
-    val body: String?,
+    val body: String?="",
     @SerializedName("created_at")
-    val createdAt: String,
+    val createdAt: String="",
     @SerializedName("event")
-    val event: String,
+    val event: String="",
     @SerializedName("id")
-    val id: String,
+    val id: String="",
     @SerializedName("updated_at")
-    val updatedAt: String,
+    val updatedAt: String="",
     @SerializedName("user")
-    val user: String
+    val user: String=""
 )

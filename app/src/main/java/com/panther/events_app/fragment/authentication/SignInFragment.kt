@@ -26,9 +26,11 @@ import com.panther.events_app.R
 import com.panther.events_app.api.EventsSharedPreference
 import com.panther.events_app.arch_com.EventsViewModel
 import com.panther.events_app.databinding.FragmentSignInBinding
+import com.panther.events_app.models.AuthBody
 import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.Resource
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 
 class SignInFragment : Fragment() {
@@ -64,15 +66,8 @@ class SignInFragment : Fragment() {
         val googleSignInClient = GoogleSignIn.getClient(requireContext(),googleSignInOptions)
 
         signInBinding.signInButton.setOnClickListener {
-//            eventsViewModel.signIn()
-//            loadSignInResponse()
-//            val signInIntent = googleSignInClient.signInIntent
-//            signInLauncher.launch(signInIntent)
-
-            val body = Gson().toJson(LoginResponse())
-            Log.d("AUTH TAG", "onViewCreated: $body")
-            findNavController().navigate(R.id.action_sign_in_dest_to_timeline_dest)
-
+            val signInIntent = googleSignInClient.signInIntent
+            signInLauncher.launch(signInIntent)
         }
 
         signInBinding.textView2.setOnClickListener {
@@ -97,13 +92,15 @@ class SignInFragment : Fragment() {
                         val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                         if (task.isSuccessful) {
                             val account = task.result
-                            val info =
-                                "ID: ${account.id}" +
-                                        "\nID token: ${account.idToken}" +
-                                        "\nDisplay name: ${account.displayName} ${account.familyName}--${account.givenName}" +
-                                        "\nEmail: ${account.email}" +
-                                        "\nPhoto url: ${account.photoUrl}"
-                            showDialog(info)
+                            val authBody = AuthBody(
+                                email = account.email ?:"no mail",
+                                id = account.id ?: "No id ${System.currentTimeMillis()}" ,
+                                photoUrl = account.photoUrl.toString(),
+                                name = account.givenName +" "+ account.familyName
+                            )
+                            eventsViewModel.signIn(authBody)
+                            loadSignInResponse()
+
                             return@registerForActivityResult
                         }
                     }catch (e:Exception){
@@ -138,14 +135,9 @@ class SignInFragment : Fragment() {
                         signInBinding.progressBar.isVisible = false
                         state.data?.let {userInfo->
                             Log.d("AUth", "loadSignInResponse: ${userInfo.session_token}")
-
-                            Intent(Intent.ACTION_VIEW).apply {
-//                                data = Uri.parse(userInfo.session_token)
-                                data = Uri.parse("https://octopus-app-nax2o.ondigitalocean.app/api/login")
-                                startActivity(this)
-                            }
                             eventsSharedPref.updateSharedPref(userInfo.session_token)
-//                            findNavController().navigate(R.id.action_sign_in_dest_to_timeline_dest)
+                            eventsSharedPref.updateSharedPrefUser(userInfo.user_id)
+                            findNavController().navigate(R.id.action_sign_in_dest_to_timeline_dest)
                         }
                     }
 
@@ -155,18 +147,6 @@ class SignInFragment : Fragment() {
                     }
                 }
             }
-        }
-    }
-
-    private fun showDialog(text:String) {
-        MaterialAlertDialogBuilder(requireContext()).apply {
-            setMessage(text)
-            setTitle("Account Info")
-            setPositiveButton("OK") { dialogInterface, int ->
-                dialogInterface.dismiss()
-            }
-            create()
-            show()
         }
     }
 
