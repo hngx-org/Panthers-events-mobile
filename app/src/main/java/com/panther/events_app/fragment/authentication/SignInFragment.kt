@@ -70,7 +70,7 @@ class SignInFragment : Fragment() {
             signInLauncher.launch(signInIntent)
         }
 
-        signInBinding.textView2.setOnClickListener {
+        signInBinding.signOut.setOnClickListener {
             googleSignInClient.signOut().addOnCompleteListener {task->
                 if (task.isSuccessful){
                     Toast.makeText(requireContext(), "Sign out successful  ...", Toast.LENGTH_SHORT)
@@ -86,6 +86,7 @@ class SignInFragment : Fragment() {
 
     private val signInLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            signInBinding.signOut.isVisible = result.resultCode == Activity.RESULT_OK
             when (result.resultCode) {
                 Activity.RESULT_OK -> {
                     try {
