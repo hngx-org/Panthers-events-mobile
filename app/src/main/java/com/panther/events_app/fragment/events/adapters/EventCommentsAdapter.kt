@@ -32,7 +32,7 @@ class EventCommentsAdapter() : ListAdapter<CommentsResponseItem, EventCommentsAd
                 }
 */
 
-                eventCommentText.text = comment.body
+                eventCommentText.text = comment.body ?: ""
                 profileImg.clipToOutline = true
             }
         }

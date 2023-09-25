@@ -13,6 +13,7 @@ import com.panther.events_app.databinding.TimelineEventViewholderBinding
 import com.panther.events_app.getDate
 import com.panther.events_app.models.group_event_model.EventsResponseItem
 import com.panther.events_app.getDuration
+import com.panther.events_app.isValid
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
@@ -28,8 +29,8 @@ class MyPeopleEventAdapter() : ListAdapter<EventsResponseItem, MyPeopleEventAdap
 
         fun bind(event: EventsResponseItem) {
             binding.apply {
-                eventTitleText.text = event.title.ifEmpty { "--- ---" }
-                eventLocationText.text = event.location.ifEmpty { "--- ---" }
+                eventTitleText.text = event.title.isValid()
+                eventLocationText.text = event.location.isValid()
                 eventDurationText.text = getDuration(event.startDate, event.endDate)
                 eventDateText.text = getDate(event.startDate)
                 image1.clipToOutline = true

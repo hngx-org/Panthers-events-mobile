@@ -126,3 +126,21 @@ private fun checkWeekdayName(day: Int):String {
     }
 }
 
+fun String?.isValid():String {
+    return try {
+        if (this.isNullOrEmpty()){
+            "--- ---"
+        }else{
+            return this
+
+        }
+    }catch (e:Exception){
+        "--- ---"
+    }catch (e:NullPointerException){
+        "--- ---"
+    }
+
+
+
+}
+

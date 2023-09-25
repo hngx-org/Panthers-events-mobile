@@ -8,23 +8,23 @@ data class EventsResponseItem(
     @SerializedName("created_at")
     val createdAt: String,
     @SerializedName("creator")
-    val creator: String,
+    val creator: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("end_date")
-    val endDate: String,
+    val endDate: String?,
     @SerializedName("end_time")
-    val endTime: String,
+    val endTime: String?,
     @SerializedName("id")
-    val id: String,
+    val id: String?,
     @SerializedName("location")
-    val location: String,
+    val location: String?,
     @SerializedName("start_date")
-    val startDate: String,
+    val startDate: String?,
     @SerializedName("start_time")
-    val startTime: String,
+    val startTime: String?,
     @SerializedName("title")
-    val title: String,
+    val title: String?,
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String?
 )

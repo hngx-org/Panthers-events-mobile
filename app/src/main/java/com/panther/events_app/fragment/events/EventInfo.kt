@@ -25,6 +25,7 @@ import com.panther.events_app.databinding.FragmentEventInfoBinding
 import com.panther.events_app.fragment.events.adapters.EventCommentsAdapter
 import com.panther.events_app.getDate
 import com.panther.events_app.getDuration
+import com.panther.events_app.isValid
 import com.panther.events_app.models.Resource
 import com.panther.events_app.models.group_event_model.PostCommentBody
 import kotlinx.coroutines.launch
@@ -89,6 +90,7 @@ class EventInfo : Fragment() {
     private fun loadGroupEventInfo() {
         lifecycleScope.launch {
             eventsViewModel.groupEventInfo.collect { state ->
+                binding.retryInfoBtn.isVisible = state is Resource.Failure
                 binding.apply {
                     when (state) {
                         is Resource.Loading -> {
@@ -100,8 +102,8 @@ class EventInfo : Fragment() {
                            progressBar.isVisible = false
                            emptyStateTv.isVisible = false
                             eventHeaderText.text = "Group name"
-                            eventTitleText.text = state.data?.title?.ifEmpty { "--- ---" } ?: "--- ---"
-                            eventLocationText.text = state.data?.location?.ifEmpty { "--- ---" } ?: "--- ---"
+                            eventTitleText.text = state.data?.title?.isValid()
+                            eventLocationText.text = state.data?.location?.isValid()
                             eventDurationText.text = getDuration( state.data?.startDate,state.data?.endDate)
                             eventDateText.text = getDate( state.data?.startDate)
                             eventsViewModel.loadGroupEventInfoComments()
@@ -128,13 +130,14 @@ class EventInfo : Fragment() {
                                 ).show()
                             }
 
-
-
                         }
 
                         is Resource.Failure -> {
                            progressBar.isVisible = false
                            emptyStateTv.isVisible = true
+                           retryInfoBtn.setOnClickListener {
+                               eventsViewModel.loadGroupEventsInfo(args.eventId)
+                           }
                            emptyStateTv.text = state.msg
                         }
                     }
@@ -146,6 +149,7 @@ class EventInfo : Fragment() {
     private fun loadGroupEventInfoComments() {
         lifecycleScope.launch {
             eventsViewModel.groupEventInfoComments.collect { state ->
+                binding.retryCommentBtn.isVisible = state is Resource.Failure
                 binding.apply {
                     when (state) {
                         is Resource.Loading -> {
@@ -173,6 +177,10 @@ class EventInfo : Fragment() {
                         is Resource.Failure -> {
                             progressBar.isVisible = false
                             emptyStateTv.isVisible = true
+                            retryCommentBtn.setOnClickListener {
+                                eventsViewModel.loadGroupEventInfoComments()
+                                loadGroupEventInfoComments()
+                            }
                             eventCommentsRv.isVisible = false
                             emptyStateTv.text = state.msg
                         }

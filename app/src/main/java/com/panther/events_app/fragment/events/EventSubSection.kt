@@ -41,7 +41,7 @@ class EventSubSection : Fragment() {
         eventsViewModel.loadAllGroupEvents()
         loadAllGroupEvents()
         eventsAdapter.adapterClickListener {
-            val route = EventSubSectionDirections.actionEventSubSectionToEventInfo(it.id,"Group name")
+            val route = EventSubSectionDirections.actionEventSubSectionToEventInfo(it.id ?:"","Group name")
             findNavController().navigate(route)
         }
         binding.addEventFab.setOnClickListener {
@@ -56,25 +56,32 @@ class EventSubSection : Fragment() {
     private fun loadAllGroupEvents() {
         lifecycleScope.launch {
             eventsViewModel.allGroupEvents.collect { state ->
-                when (state) {
-                    is Resource.Loading -> {
-                        binding.progressBar.isVisible = true
-                        binding.emptyStateTv.isVisible = false
-                        binding.eventsRv.isVisible = false
-                    }
+                binding.retryInfoBtn.isVisible = state is Resource.Failure
+                binding.apply {
+                    when (state) {
 
-                    is Resource.Successful -> {
-                        binding.progressBar.isVisible = false
-                        binding.emptyStateTv.isVisible = false
-                        binding.eventsRv.isVisible = true
-                        eventsAdapter.submitList(state.data)
-                    }
+                        is Resource.Loading -> {
+                            progressBar.isVisible = true
+                            emptyStateTv.isVisible = false
+                            eventsRv.isVisible = false
+                        }
 
-                    is Resource.Failure -> {
-                        binding.progressBar.isVisible = false
-                        binding.emptyStateTv.isVisible = true
-                        binding.eventsRv.isVisible = false
-                        binding.emptyStateTv.text = state.msg
+                        is Resource.Successful -> {
+                            progressBar.isVisible = false
+                            emptyStateTv.isVisible = false
+                            eventsRv.isVisible = true
+                            eventsAdapter.submitList(state.data)
+                        }
+
+                        is Resource.Failure -> {
+                            progressBar.isVisible = false
+                            emptyStateTv.isVisible = true
+                            retryInfoBtn.setOnClickListener {
+                                eventsViewModel.loadAllGroupEvents()
+                            }
+                            eventsRv.isVisible = false
+                            emptyStateTv.text = state.msg
+                        }
                     }
                 }
             }
