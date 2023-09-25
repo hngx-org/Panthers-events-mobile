@@ -7,4 +7,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="timeline">Timeline</string>
+    <string name="done">Done</string>
+    <string name="create_event">Create Event</string>
+    <string name="type_event_description">Type event description</string>
+    <string name="starts">Starts</string>
+    <string name="ends">Ends</string>
+    <string name="add_location">Add location</string>
+    <string name="select_groups">Select groups</string>
 </resources>
