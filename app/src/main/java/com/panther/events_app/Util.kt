@@ -15,6 +15,7 @@ const val BASE_URL = "https://octopus-app-nax2o.ondigitalocean.app/api/"
 
 const val EVENTS_PREFERENCE = "Events shared preference"
 const val SESSION_TOKEN = "Auth session token"
+const val CURRENT_SESSION_TOKEN = "IjEwMjE3NDkzNjAxMzgwMjc4NTY1MSI.ZRCxoQ.nImvyDIyMMKSDNUUbKqg1jOeABw"
 
 
 fun getMyPeopleEventList():List<MyPeopleEvent>{

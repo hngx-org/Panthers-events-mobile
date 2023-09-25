@@ -2,6 +2,7 @@ package com.panther.events_app.api
 
 import com.google.gson.GsonBuilder
 import com.panther.events_app.BASE_URL
+import com.panther.events_app.CURRENT_SESSION_TOKEN
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,12 +35,11 @@ class RetrofitInstance {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        val token ="IjEwMjE3NDkzNjAxMzgwMjc4NTY1MSI.ZRCxoQ.nImvyDIyMMKSDNUUbKqg1jOeABw"
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
             .addInterceptor {chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer $token").build()
+                    .addHeader("Authorization", "Bearer $CURRENT_SESSION_TOKEN").build()
                 chain.proceed(request)
             }
             .build()

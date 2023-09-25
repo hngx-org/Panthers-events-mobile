@@ -4,16 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.Resource
-import com.panther.events_app.models.group_event_model.CommentImageResponse
 import com.panther.events_app.models.group_event_model.CommentsResponse
 import com.panther.events_app.models.group_event_model.CommentsResponseItem
 import com.panther.events_app.models.group_event_model.EventsResponse
 import com.panther.events_app.models.group_event_model.EventsResponseItem
+import com.panther.events_app.models.group_event_model.PostCommentBody
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class EventsViewModel : ViewModel() {
@@ -27,6 +28,9 @@ class EventsViewModel : ViewModel() {
         private set
     var groupEventInfoComments =
         MutableStateFlow<Resource<CommentsResponse>>(Resource.Loading())
+        private set
+    var sendCommentStatus =
+        MutableStateFlow<Resource<CommentsResponseItem>>(Resource.Loading())
         private set
 
     private val groupEventComments =
@@ -66,11 +70,6 @@ class EventsViewModel : ViewModel() {
         }
     }
 
-    fun deleteGroupEvents(id: String) {
-        viewModelScope.launch {
-            eventsRepository.deleteGroupEvent(id)
-        }
-    }
 
     private fun loadGroupEventComment() {
         groupEventComments.value = Resource.Loading()
@@ -80,16 +79,23 @@ class EventsViewModel : ViewModel() {
     }
 
     fun loadGroupEventInfoComments() {
-        groupEventInfoComments.value = Resource.Loading()
+//        groupEventInfoComments.value = Resource.Loading()
         viewModelScope.launch {
             groupEventInfoComments.value = eventsRepository.getGroupEventComment()
         }
     }
 
-    fun postGroupEventComments(id: Int) {
+    fun toggleEventCommentState(state:Resource<CommentsResponse>){
+        groupEventInfoComments.value = state
+    }
+
+    fun postGroupEventComments(postCommentBody: PostCommentBody) {
         viewModelScope.launch {
-            eventsRepository.postGroupEventComment(id)
-            loadGroupEventInfoComments()
+            eventsRepository.postComment(postCommentBody).collect{
+                sendCommentStatus.value = it
+                loadGroupEventInfoComments()
+            }
+
         }
     }
 
