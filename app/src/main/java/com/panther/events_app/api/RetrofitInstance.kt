@@ -33,15 +33,24 @@ class RetrofitInstance {
 
     }
     private val authRetrofit by lazy {
+
+
+    }
+
+    val apiService : EventsApi by lazy {
+        retrofit.create(EventsApi::class.java)
+    }
+    val apiServiceAuth: EventsApi by lazy {
+
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
             .addInterceptor {chain ->
-                Log.d("AUTH", "pref: $eventsSharedPref")
+                Log.d("AUTH", "pref: ${EventsSharedPreference().getSharedPref()}")
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer $eventsSharedPref").build()
+                    .addHeader("Authorization", "Bearer ${EventsSharedPreference().getSharedPref()}").build()
                 chain.proceed(request)
             }
             .build()
@@ -51,15 +60,7 @@ class RetrofitInstance {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client((client))
-            .build()
-
-    }
-
-    val apiService : EventsApi by lazy {
-        retrofit.create(EventsApi::class.java)
-    }
-    val apiServiceAuth: EventsApi by lazy {
-        authRetrofit.create(EventsApi::class.java)
+            .build().create(EventsApi::class.java)
     }
 
 }

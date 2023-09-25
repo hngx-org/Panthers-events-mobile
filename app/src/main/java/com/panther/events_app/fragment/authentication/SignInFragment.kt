@@ -138,7 +138,7 @@ class SignInFragment : Fragment() {
                             Log.d("AUth", "loadSignInResponse: ${userInfo.session_token}")
                             eventsSharedPref.updateSharedPref(userInfo.session_token)
                             eventsSharedPref.updateSharedPrefUser(userInfo.user_id)
-                            findNavController().navigate(R.id.action_sign_in_dest_to_timeline_dest)
+                            findNavController().navigate(R.id.timeline_dest)
                         }
                     }
 

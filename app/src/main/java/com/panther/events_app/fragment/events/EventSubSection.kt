@@ -70,7 +70,7 @@ class EventSubSection : Fragment() {
             googleSignInClient.signOut().addOnCompleteListener {
                 if (it.isSuccessful) {
                     eventsSharedPref.updateSharedPref("")
-                    findNavController().popBackStack(R.id.sign_in_dest, true)
+                    findNavController().navigate(R.id.sign_in_dest)
                     Toast.makeText(requireContext(), "Sign out successful  ...", Toast.LENGTH_SHORT)
                         .show()
                     return@addOnCompleteListener
