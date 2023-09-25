@@ -5,7 +5,9 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.panther.events_app.BASE_URL
 import com.panther.events_app.CURRENT_SESSION_TOKEN
+import com.panther.events_app.api.EventsSharedPreference
 import com.panther.events_app.api.RetrofitInstance
+import com.panther.events_app.models.AuthBody
 import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.Resource
 import com.panther.events_app.models.events_model.EventResponse
@@ -32,67 +34,22 @@ import java.util.concurrent.TimeUnit
 class EventsRepository {
     private val apiService = RetrofitInstance().apiService
     private val apiServiceAuth = RetrofitInstance().apiServiceAuth
-
-    fun signIn(): Flow<String> {
+    private val eventsSharedPref = EventsSharedPreference().getSharedPref()
+    fun signIn(authBody: AuthBody): Flow<Resource<LoginResponse>> {
 
         return callbackFlow {
 
+            val body = Gson().toJson(authBody)
+            val jsonObj = JSONObject()
+            jsonObj.put("id",authBody.id)
+            jsonObj.put("email",authBody.email)
+            jsonObj.put("photoUrl",authBody.photoUrl)
+            jsonObj.put("name",authBody.name)
             val request = Request.Builder()
                 .addHeader("Content-Type", "application/json")
-                .url(BASE_URL + "login")
-                .build()
-
-
-            val logger = HttpLoggingInterceptor()
-            logger.level = HttpLoggingInterceptor.Level.BASIC
-            OkHttpClient.Builder().addInterceptor(logger)
-                .connectTimeout(120, TimeUnit.SECONDS)
-                .readTimeout(120, TimeUnit.SECONDS)
-                .build().newCall(request)
-                .enqueue(object :
-                    Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-                        Log.d("Auth", "onFailure-- $e")
-                        trySend("")
-                    }
-
-                    override fun onResponse(call: Call, response: Response) {
-                        Log.d(
-                            "Auth", "onResponse-- $response +++ " +
-                                    "${call.isExecuted()}====${response.isSuccessful}" +
-                                    "--${response.code}===${response.body}"
-                        )
-                        Log.d("Auth", "RESPONSE BODY::${response.body?.string()}")
-                        trySend(response.request.url.toString())
-//                        trySend(response.priorResponse?.request?.url.toString()) this leads to an error in the server or something
-                    }
-                })
-            awaitClose()
-        }
-    }
-    fun postComment(postCommentBody: PostCommentBody): Flow<Resource<CommentsResponseItem>> {
-
-        return callbackFlow {
-            val body = Gson().toJson(postCommentBody)
-
-           /* This works too
-            val jsonObj = JSONObject()
-            jsonObj.put("id",postCommentBody.id)
-            jsonObj.put("user",postCommentBody.user)
-            jsonObj.put("event",postCommentBody.event)
-            jsonObj.put("body",postCommentBody.body)
-*/
-            Log.d("Comment", "postComment: $body")
-            val request = okhttp3.Request.Builder()
-                .url(BASE_URL + "comments/")
-                .addHeader("Content-Type", "application/json")
-                .addHeader(
-                    "Authorization",
-                   "Bearer $CURRENT_SESSION_TOKEN"
-                )
+                .url(BASE_URL + "auth/")
                 .post(
-//                    jsonObj.toString().toRequestBody()
-                    body.toString().toRequestBody()
+                    jsonObj.toString().toRequestBody()
                 ).build()
 
 
@@ -109,11 +66,57 @@ class EventsRepository {
                     }
 
                     override fun onResponse(call: Call, response: Response) {
+                         try {
+                            val loginInfo = Gson().fromJson(response.body?.string(),LoginResponse::class.java)
+                            trySend(Resource.Successful(loginInfo))
+                        }catch (e:Exception){
+                            trySend(Resource.Failure(e.message))
+                        }
+                    }
+                })
+            awaitClose()
+        }
+    }
+    fun postComment(postCommentBody: PostCommentBody): Flow<Resource<CommentsResponseItem>> {
+
+        return callbackFlow {
+//            val body = Gson().toJson(postCommentBody)
+            val jsonObj = JSONObject()
+            jsonObj.put("id",postCommentBody.id)
+            jsonObj.put("user",postCommentBody.user)
+            jsonObj.put("event",postCommentBody.event)
+            jsonObj.put("body",postCommentBody.body)
+
+            val request = okhttp3.Request.Builder()
+                .url(BASE_URL + "comments/")
+                .addHeader("Content-Type", "application/json")
+                .addHeader(
+                    "Authorization",
+                   "Bearer $eventsSharedPref"
+                )
+                .post(
+                    jsonObj.toString().toRequestBody()
+                ).build()
+
+
+            val logger = HttpLoggingInterceptor()
+            logger.level = HttpLoggingInterceptor.Level.BASIC
+            OkHttpClient.Builder().addInterceptor(logger)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
+                .build().newCall(request)
+                .enqueue(object :
+                    Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        trySend(Resource.Failure("Unable to post comment ..."))
+                    }
+
+                    override fun onResponse(call: Call, response: Response) {
                         try {
                             val commentBody = Gson().fromJson(response.body?.string(),CommentsResponseItem::class.java)
                             trySend(Resource.Successful(commentBody))
                         }catch (e:Exception){
-                            trySend(Resource.Failure(e.message))
+                            trySend(Resource.Failure("Unable to post comment"))
                         }
 
                     }

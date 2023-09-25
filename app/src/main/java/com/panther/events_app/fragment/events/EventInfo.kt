@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.panther.events_app.CURRENT_SESSION_TOKEN
 import com.panther.events_app.R
+import com.panther.events_app.api.EventsSharedPreference
 import com.panther.events_app.arch_com.EventsViewModel
 import com.panther.events_app.databinding.FragmentEventInfoBinding
 import com.panther.events_app.fragment.events.adapters.EventCommentsAdapter
@@ -38,7 +39,7 @@ class EventInfo : Fragment() {
     private val commentsAdapter by lazy { EventCommentsAdapter() }
     private val eventsViewModel by activityViewModels<EventsViewModel>()
     private val args by navArgs<EventInfoArgs>()
-
+    private val eventsSharedPref = EventsSharedPreference().getSharedPrefUser()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -116,7 +117,7 @@ class EventInfo : Fragment() {
                                         body = commentEditText.text.toString().trim(),
                                         event = state.data?.id ?:"No id",
                                         id = UUID.randomUUID().toString(),
-                                        user = "22bd7f18-82e3-4cc3-be4a-553978a6a5e5",
+                                        user = eventsSharedPref,
                                     )
 
                                     eventsViewModel.postGroupEventComments(commentBody)

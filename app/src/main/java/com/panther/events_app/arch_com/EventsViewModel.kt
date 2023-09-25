@@ -2,6 +2,7 @@ package com.panther.events_app.arch_com
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.panther.events_app.models.AuthBody
 import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.Resource
 import com.panther.events_app.models.events_model.EventResponse
@@ -82,7 +83,7 @@ class EventsViewModel : ViewModel() {
     }
 
     fun loadGroupEventInfoComments() {
-//        groupEventInfoComments.value = Resource.Loading()
+        groupEventInfoComments.value = Resource.Loading()
         viewModelScope.launch {
             groupEventInfoComments.value = eventsRepository.getGroupEventComment()
         }
@@ -127,14 +128,12 @@ class EventsViewModel : ViewModel() {
 
     }
 
-    fun signIn() {
+    fun signIn(authBody: AuthBody) {
         userSessionInfo.value = Resource.Loading()
         viewModelScope.launch {
-            eventsRepository.signIn().collect{
-                userSessionInfo.value = Resource.Successful(LoginResponse().copy(session_token =it ))
+            eventsRepository.signIn(authBody).collect{
+                userSessionInfo.value = it
             }
-//            userSessionInfo.value = eventsRepository.authenticateUser()
-
         }
     }
     fun allEvents() {

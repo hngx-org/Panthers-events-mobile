@@ -5,12 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.panther.events_app.R
+import com.panther.events_app.api.EventsSharedPreference
 import com.panther.events_app.arch_com.EventsViewModel
 import com.panther.events_app.databinding.FragmentEventSubSectionBinding
 import com.panther.events_app.fragment.events.adapters.MyPeopleEventAdapter
@@ -24,6 +29,9 @@ class EventSubSection : Fragment() {
     private lateinit var binding: FragmentEventSubSectionBinding
     private val eventsAdapter by lazy { MyPeopleEventAdapter() }
     private val eventsViewModel by activityViewModels<EventsViewModel>()
+    private val eventsSharedPref by lazy {
+        EventsSharedPreference()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +58,27 @@ class EventSubSection : Fragment() {
         }
         binding.backBtn.setOnClickListener{
             findNavController().navigateUp()
+        }
+
+        binding.eventHeaderText.setOnClickListener {
+
+            val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+            val googleSignInClient = GoogleSignIn.getClient(requireContext(),googleSignInOptions)
+
+            googleSignInClient.signOut().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    eventsSharedPref.updateSharedPref("")
+                    findNavController().navigate(R.id.sign_in_dest)
+                    Toast.makeText(requireContext(), "Sign out successful  ...", Toast.LENGTH_SHORT)
+                        .show()
+                    return@addOnCompleteListener
+                }
+                Toast.makeText(requireContext(), "Sign out failed ...", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
         }
     }
 
