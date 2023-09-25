@@ -1,7 +1,7 @@
 package com.panther.events_app.api
 
-import com.panther.events_app.models.Events
 import com.panther.events_app.models.LoginResponse
+import com.panther.events_app.models.events_model.EventResponse
 import com.panther.events_app.models.group_event_model.CommentsResponse
 import com.panther.events_app.models.group_event_model.CommentsResponseItem
 import com.panther.events_app.models.group_event_model.EventsResponse
@@ -15,12 +15,12 @@ import retrofit2.http.Path
 
 interface EventsApi {
 
-    suspend fun getEventsResponse() : Response<Events>
+   // suspend fun getEventsResponse() : Response<Events>
 
     @GET("login")
     suspend fun authenticateUser() : Response<LoginResponse>
 
-    @GET("events")
+    @GET("groupevents")
     suspend fun getAllGroupEvents() : Response<EventsResponse>
 
     @GET("events/{id}")
@@ -36,5 +36,8 @@ interface EventsApi {
     suspend fun postGroupEventComment(
         @Body comment: PostCommentBody
     ): Response<CommentsResponseItem>//docs doesn't return anything
+
+    @GET("events")
+    suspend fun getAllEvents() : Response<EventResponse>
 
 }

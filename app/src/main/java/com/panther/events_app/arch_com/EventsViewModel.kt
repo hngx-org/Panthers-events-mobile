@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.Resource
+import com.panther.events_app.models.events_model.EventResponse
+import com.panther.events_app.models.events_model.EventResponseItem
 import com.panther.events_app.models.group_event_model.CommentsResponse
 import com.panther.events_app.models.group_event_model.CommentsResponseItem
 import com.panther.events_app.models.group_event_model.EventsResponse
@@ -35,6 +37,7 @@ class EventsViewModel : ViewModel() {
 
     private val groupEventComments =
         MutableStateFlow<Resource<CommentsResponse>>(Resource.Loading())
+    var getAllEvents = MutableStateFlow<Resource<EventResponse>>(Resource.Loading())
 
 
     fun loadAllGroupEvents() {
@@ -134,7 +137,24 @@ class EventsViewModel : ViewModel() {
 
         }
     }
+    fun allEvents() {
+        getAllEvents.value = Resource.Loading()
+        viewModelScope.launch {
+            val response = eventsRepository.getAllEvents()
 
+            if (response is Resource.Successful) {
+                response.data?.let { events ->
+                    val eventList = mutableListOf<EventResponseItem>()
+                    val newGroupEvent = EventResponse()
+                    newGroupEvent.addAll(events)
+                    getAllEvents.value = Resource.Successful(newGroupEvent)
+                }
+                return@launch
+            }
+            getAllEvents.value = response
+
+        }
+    }
 
 
 }

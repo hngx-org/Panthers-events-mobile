@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -58,7 +59,7 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        val googleSignInOptions = Builder(DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
         val googleSignInClient = GoogleSignIn.getClient(requireContext(),googleSignInOptions)
@@ -153,6 +154,8 @@ class SignInFragment : Fragment() {
                         signInBinding.progressBar.isVisible = false
                         Toast.makeText(requireContext(), "${state.msg}", Toast.LENGTH_SHORT).show()
                     }
+
+                    else -> {}
                 }
             }
         }

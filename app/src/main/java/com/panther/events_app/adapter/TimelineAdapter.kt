@@ -9,7 +9,6 @@ import com.panther.events_app.R
 import com.panther.events_app.databinding.TimelineItemBinding
 import com.panther.events_app.models.Items
 import com.panther.events_app.models.events_model.EventResponseItem
-import com.panther.events_app.models.group_event_model.GroupEventResponseItem
 import kotlin.random.Random
 
 class TimelineAdapter(
