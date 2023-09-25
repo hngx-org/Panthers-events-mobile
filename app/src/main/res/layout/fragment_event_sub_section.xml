@@ -55,13 +55,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Techies"
         android:fontFamily="@font/space_grotesk_medium"
+        android:text="Techies"
         android:textColor="?attr/colorOnSurface"
         android:textSize="24sp"
-
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/back_btn_holder"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView

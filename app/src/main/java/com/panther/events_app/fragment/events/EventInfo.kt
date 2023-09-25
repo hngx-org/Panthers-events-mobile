@@ -13,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.panther.events_app.arch_com.EventsViewModel
 import com.panther.events_app.databinding.FragmentEventInfoBinding
@@ -44,6 +45,9 @@ class EventInfo : Fragment() {
         loadGroupEventInfo()
         binding.addImageBtn.setOnClickListener {
             selectImage()
+        }
+        binding.backBtn.setOnClickListener {
+            findNavController().navigateUp()
         }
 
     }
@@ -84,8 +88,12 @@ class EventInfo : Fragment() {
                         is Resource.Successful -> {
                            progressBar.isVisible = false
                            emptyStateTv.isVisible = false
-                            eventTitleText.text = state.data?.event ?: "Some Event"
-                            eventsViewModel.loadGroupEventInfoComments(state.data?.id ?: 0)
+                            eventHeaderText.text = "Group name"
+                            eventTitleText.text = state.data?.title ?: "Some Event"
+                            eventLocationText.text = state.data?.location
+                            eventDurationText.text = state.data?.startTime +"--"+ state.data?.endTime
+                            eventDateText.text =state.data?.startDate +"--"+ state.data?.endDate
+                            eventsViewModel.loadGroupEventInfoComments()
                             loadGroupEventInfoComments()
 
                         }

@@ -6,7 +6,9 @@ import com.panther.events_app.api.RetrofitInstance
 import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.Resource
 import com.panther.events_app.models.group_event_model.CommentImageResponse
-import com.panther.events_app.models.group_event_model.GroupEventResponse
+import com.panther.events_app.models.group_event_model.CommentsResponse
+import com.panther.events_app.models.group_event_model.EventsResponse
+import com.panther.events_app.models.group_event_model.EventsResponseItem
 import com.panther.events_app.models.group_event_model.GroupEventResponseItem
 import com.panther.events_app.models.group_event_model.PostCommentImage
 import kotlinx.coroutines.channels.awaitClose
@@ -80,7 +82,7 @@ class EventsRepository {
             Resource.Failure(e.toString())
         }
     }
-    suspend fun getAllGroupEvents(): Resource<GroupEventResponse> {
+    suspend fun getAllGroupEvents(): Resource<EventsResponse> {
         return try {
             val body = apiServiceAuth.getAllGroupEvents()
             Log.d("JOE", "API RESPONSE (all group event): ${body.body()} ")
@@ -92,7 +94,7 @@ class EventsRepository {
         }
     }
 
-    suspend fun getGroupEventInfo(id: Int): Resource<GroupEventResponseItem> {
+    suspend fun getGroupEventInfo(id: String): Resource<EventsResponseItem> {
         return try {
             val body = apiServiceAuth.getGroupEventInfo(id)
             Log.d("JOE", "API RESPONSE (group event info): ${body.body()} ")
@@ -104,7 +106,7 @@ class EventsRepository {
         }
     }
 
-    suspend fun deleteGroupEvent(id: Int): Resource<GroupEventResponseItem> {
+    suspend fun deleteGroupEvent(id: String): Resource<GroupEventResponseItem> {
         return try {
             val body = apiServiceAuth.deleteGroupEvent(id)
             Log.d("JOE", "API RESPONSE (delete group event): ${body.body()} ")
@@ -116,9 +118,9 @@ class EventsRepository {
         }
     }
 
-    suspend fun getGroupEventComment(id: Int): Resource<CommentImageResponse> {
+    suspend fun getGroupEventComment(): Resource<CommentsResponse> {
         return try {
-            val body = apiServiceAuth.getGroupEventComments(id)
+            val body = apiServiceAuth.getGroupEventComments()
             Log.d("JOE", "API RESPONSE (group event comments): ${body.body()} ")
             body.body()?.let { Resource.Successful(it) }
                 ?: Resource.Failure("Response not available at the moment....")

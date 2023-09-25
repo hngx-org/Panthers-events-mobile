@@ -34,11 +34,12 @@ class RetrofitInstance {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
+        val token ="IjEwMjE3NDkzNjAxMzgwMjc4NTY1MSI.ZRCxoQ.nImvyDIyMMKSDNUUbKqg1jOeABw"
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
             .addInterceptor {chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization",eventsSharedPref).build()
+                    .addHeader("Authorization", "Bearer $token").build()
                 chain.proceed(request)
             }
             .build()

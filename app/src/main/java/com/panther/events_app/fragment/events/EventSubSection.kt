@@ -37,7 +37,7 @@ class EventSubSection : Fragment() {
         eventsViewModel.loadAllGroupEvents()
         loadAllGroupEvents()
         eventsAdapter.adapterClickListener {
-            val route = EventSubSectionDirections.actionEventSubSectionToEventInfo(it.id)
+            val route = EventSubSectionDirections.actionEventSubSectionToEventInfo(it.id,"Group name")
             findNavController().navigate(route)
         }
         binding.addEventFab.setOnClickListener {

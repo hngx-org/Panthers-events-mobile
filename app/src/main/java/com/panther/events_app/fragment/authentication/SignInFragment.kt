@@ -15,14 +15,18 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.panther.events_app.R
 import com.panther.events_app.api.EventsSharedPreference
 import com.panther.events_app.arch_com.EventsViewModel
 import com.panther.events_app.databinding.FragmentSignInBinding
+import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.Resource
 import kotlinx.coroutines.launch
 
@@ -62,8 +66,12 @@ class SignInFragment : Fragment() {
         signInBinding.signInButton.setOnClickListener {
 //            eventsViewModel.signIn()
 //            loadSignInResponse()
-            val signInIntent = googleSignInClient.signInIntent
-            signInLauncher.launch(signInIntent)
+//            val signInIntent = googleSignInClient.signInIntent
+//            signInLauncher.launch(signInIntent)
+
+            val body = Gson().toJson(LoginResponse())
+            Log.d("AUTH TAG", "onViewCreated: $body")
+            findNavController().navigate(R.id.action_sign_in_dest_to_timeline_dest)
 
         }
 

@@ -3,7 +3,9 @@ package com.panther.events_app.api
 import com.panther.events_app.models.Events
 import com.panther.events_app.models.LoginResponse
 import com.panther.events_app.models.group_event_model.CommentImageResponse
-import com.panther.events_app.models.group_event_model.GroupEventResponse
+import com.panther.events_app.models.group_event_model.CommentsResponse
+import com.panther.events_app.models.group_event_model.EventsResponse
+import com.panther.events_app.models.group_event_model.EventsResponseItem
 import com.panther.events_app.models.group_event_model.GroupEventResponseItem
 import com.panther.events_app.models.group_event_model.PostCommentImage
 import retrofit2.Response
@@ -19,23 +21,21 @@ interface EventsApi {
     @GET("login")
     suspend fun authenticateUser() : Response<LoginResponse>
 
-    @GET("groupevents")
-    suspend fun getAllGroupEvents() : Response<GroupEventResponse>
+    @GET("events")
+    suspend fun getAllGroupEvents() : Response<EventsResponse>
 
-    @GET("groupevents/{id}")
+    @GET("events/{id}")
     suspend fun getGroupEventInfo(
-        @Path("id") id:Int
-    ): Response<GroupEventResponseItem>
+        @Path("id") id:String
+    ): Response<EventsResponseItem>
 
     @DELETE("groupevents/{id}")
     suspend fun deleteGroupEvent(
-        @Path("id") id: Int
+        @Path("id") id: String
     ): Response<GroupEventResponseItem>//docs doesn't return anything
 
-    @GET("comments/{commentId}/images/list")
-    suspend fun getGroupEventComments(
-        @Path("commentId") id: Int
-    ): Response<CommentImageResponse>//docs doesn't return anything but should return a list of comments
+    @GET("comments")
+    suspend fun getGroupEventComments(): Response<CommentsResponse>//docs doesn't return anything but should return a list of comments
 
     @POST("comments/{commentId}/images")
     suspend fun postGroupEventComment(
