@@ -1,35 +1,45 @@
 package com.panther.events_app.fragment.events.adapters
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.panther.events_app.models.MyPeopleEvent
 import com.panther.events_app.R
 import com.panther.events_app.databinding.TimelineEventViewholderBinding
-import com.panther.events_app.models.group_event_model.GroupEventResponseItem
+import com.panther.events_app.getDate
+import com.panther.events_app.models.group_event_model.EventsResponseItem
+import com.panther.events_app.getDuration
+import com.panther.events_app.isValid
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Locale
 
-class MyPeopleEventAdapter() : ListAdapter<GroupEventResponseItem, MyPeopleEventAdapter.ViewHolder>(
+@RequiresApi(Build.VERSION_CODES.O)
+class MyPeopleEventAdapter() : ListAdapter<EventsResponseItem, MyPeopleEventAdapter.ViewHolder>(
     diffObject
 ) {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = TimelineEventViewholderBinding.bind(view)
 
-        fun bind(event: GroupEventResponseItem) {
+
+        fun bind(event: EventsResponseItem) {
             binding.apply {
-               eventTitleText.text = event.event
-//               eventLocationText.text = event.location
-//               eventDurationText.text = event.duration
-//               eventDateText.text = event.date
-               image1.clipToOutline = true
-               image2.clipToOutline = true
-               image3.clipToOutline = true
-               eventCommentsText.setOnClickListener {
+                eventTitleText.text = event.title.isValid()
+                eventLocationText.text = event.location.isValid()
+                eventDurationText.text = getDuration(event.startDate, event.endDate)
+                eventDateText.text = getDate(event.startDate)
+                image1.clipToOutline = true
+                image2.clipToOutline = true
+                image3.clipToOutline = true
+                eventCommentsText.setOnClickListener {
                     listener?.let { it(event) }
                 }
-                eventCommentsText.text = "${ event.commentCount } comments"
+//                eventCommentsText.text = "${ event.commentCount } comments"
             }
 
         }
@@ -51,23 +61,26 @@ class MyPeopleEventAdapter() : ListAdapter<GroupEventResponseItem, MyPeopleEvent
     }
 
     companion object {
-        val diffObject = object : DiffUtil.ItemCallback<GroupEventResponseItem>() {
-            override fun areItemsTheSame(oldItem: GroupEventResponseItem, newItem: GroupEventResponseItem): Boolean {
+        val diffObject = object : DiffUtil.ItemCallback<EventsResponseItem>() {
+            override fun areItemsTheSame(
+                oldItem: EventsResponseItem,
+                newItem: EventsResponseItem
+            ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: GroupEventResponseItem,
-                newItem: GroupEventResponseItem
+                oldItem: EventsResponseItem,
+                newItem: EventsResponseItem
             ): Boolean {
-                return oldItem.id == newItem.id && oldItem.event == newItem.event
+                return oldItem.id == newItem.id && oldItem.title == newItem.title
             }
         }
     }
 
-    private var listener: ((GroupEventResponseItem) -> Unit)? = null
+    private var listener: ((EventsResponseItem) -> Unit)? = null
 
-    fun adapterClickListener(listener: (GroupEventResponseItem) -> Unit) {
+    fun adapterClickListener(listener: (EventsResponseItem) -> Unit) {
         this.listener = listener
     }
 

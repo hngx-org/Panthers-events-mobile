@@ -10,18 +10,18 @@ import coil.load
 import com.panther.events_app.models.EventComments
 import com.panther.events_app.R
 import com.panther.events_app.databinding.EventCommentsViewholderBinding
-import com.panther.events_app.models.group_event_model.CommentImageResponseItem
+import com.panther.events_app.models.group_event_model.CommentsResponseItem
 
-class EventCommentsAdapter() : ListAdapter<CommentImageResponseItem, EventCommentsAdapter.ViewHolder>(
+class EventCommentsAdapter() : ListAdapter<CommentsResponseItem, EventCommentsAdapter.ViewHolder>(
     diffObject
 ) {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = EventCommentsViewholderBinding.bind(view)
 
-        fun bind(comment: CommentImageResponseItem) {
+        fun bind(comment: CommentsResponseItem) {
 
             binding.apply {
-                if (comment.url.isEmpty()) {
+               /* if (comment.url.isEmpty()) {
                     commentImage.visibility = View.GONE
                 }else {
                     commentImage.visibility = View.VISIBLE
@@ -30,9 +30,9 @@ class EventCommentsAdapter() : ListAdapter<CommentImageResponseItem, EventCommen
                         error(R.drawable.image_icon)
                     }
                 }
+*/
 
-
-                eventCommentText.text = "comment here"
+                eventCommentText.text = comment.body ?: ""
                 profileImg.clipToOutline = true
             }
         }
@@ -54,13 +54,13 @@ class EventCommentsAdapter() : ListAdapter<CommentImageResponseItem, EventCommen
     }
 
     companion object {
-        val diffObject = object : DiffUtil.ItemCallback<CommentImageResponseItem>() {
-            override fun areItemsTheSame(oldItem: CommentImageResponseItem, newItem: CommentImageResponseItem): Boolean {
+        val diffObject = object : DiffUtil.ItemCallback<CommentsResponseItem>() {
+            override fun areItemsTheSame(oldItem: CommentsResponseItem, newItem: CommentsResponseItem): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: CommentImageResponseItem, newItem: CommentImageResponseItem): Boolean {
-                return oldItem.id == newItem.id && oldItem.url == newItem.url
+            override fun areContentsTheSame(oldItem: CommentsResponseItem, newItem: CommentsResponseItem): Boolean {
+                return oldItem.id == newItem.id && oldItem.body == newItem.body
             }
         }
     }

@@ -1,15 +1,15 @@
 package com.panther.events_app.models.group_event_model
 
-
 import com.google.gson.annotations.SerializedName
 
 
-data class GroupEventResponseItem(
-    val commentCount: Int,
+data class PostCommentBody(
+    @SerializedName("body")
+    val body: String,
     @SerializedName("event")
     val event: String,
-    @SerializedName("group")
-    val group: String,
     @SerializedName("id")
-    val id: Int
+    val id: String,
+    @SerializedName("user")
+    val user: String
 )

@@ -39,7 +39,10 @@
         tools:layout="@layout/fragment_event_info" >
         <argument
             android:name="eventId"
-            app:argType="integer" />
+            app:argType="string" />
+        <argument
+            android:name="groupName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/eventSubSection"

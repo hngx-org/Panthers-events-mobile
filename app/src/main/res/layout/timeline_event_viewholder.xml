@@ -39,11 +39,13 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
-            android:text="Football game"
+            android:text="--- ---"
             android:textColor="?attr/colorOnSurface"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/event_date_holder"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toEndOf="@+id/category_img"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,13 +67,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/event_date_holder"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/event_holder_corner_outline"
             app:layout_constraintBottom_toBottomOf="@+id/placeholder"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toTopOf="@+id/placeholder">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,17 +88,19 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/event_date_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Date"
+                    android:text="---"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="16dp"
                     android:textStyle="bold"
+                    android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -109,10 +113,12 @@
             android:layout_marginTop="5dp"
             android:drawableStart="@drawable/time_duration"
             android:drawablePadding="10dp"
-            android:text="Friday 4 - 6pm"
+            android:text="--- ---"
             android:textColor="?attr/colorOnSurface"
             android:fontFamily="@font/poppins_regular"
             android:textSize="12dp"
+            android:maxLines="2"
+            android:ellipsize="end"
             app:layout_constraintEnd_toEndOf="@+id/event_location_text"
             app:layout_constraintStart_toStartOf="@+id/event_location_text"
             app:layout_constraintTop_toBottomOf="@+id/event_location_text" />
@@ -125,9 +131,11 @@
             android:layout_marginTop="5dp"
             android:drawableStart="@drawable/location"
             android:drawablePadding="10dp"
-            android:text="Location"
+            android:text="--- ---"
             android:textColor="?attr/colorOnSurface"
             android:textSize="16dp"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:fontFamily="@font/space_grotesk_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -228,7 +236,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="0. comments"
+            android:text="comments"
             android:fontFamily="@font/poppins_regular"
             android:textColor="?attr/colorOnSurface"
             app:layout_constraintBottom_toBottomOf="@+id/image_1"
@@ -249,6 +257,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/image_1"
             app:tint="?attr/colorOnSurface" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

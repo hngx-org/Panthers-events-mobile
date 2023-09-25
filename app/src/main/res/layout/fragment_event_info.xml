@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/edit_btn"
+                android:id="@+id/back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
@@ -52,15 +52,18 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/event_header_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/space_grotesk_medium"
         android:text="Techies"
+        android:textAlignment="center"
         android:textColor="?attr/colorOnSurface"
         android:textSize="24sp"
-        android:fontFamily="@font/space_grotesk_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/r_placeholder"
+        app:layout_constraintStart_toEndOf="@+id/back_btn_holder"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -75,6 +78,37 @@
         app:layout_constraintEnd_toEndOf="@+id/event_header_text"
         app:layout_constraintStart_toStartOf="@+id/event_header_text"
         app:layout_constraintTop_toBottomOf="@+id/event_header_text" />
+
+    <ImageView
+        android:id="@+id/retry_info_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="10dp"
+        android:src="@drawable/retry_icon"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/back_btn_holder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/back_btn_holder" />
+
+    <ImageView
+        android:id="@+id/r_placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="10dp"
+        android:src="@drawable/retry_icon"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/back_btn_holder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/back_btn_holder" />
+
 
     <View
         android:id="@+id/top_border_line"
@@ -153,10 +187,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/space_grotesk_medium"
-                android:text="Some event"
+                android:text="--- ---"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/event_date_holder"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toEndOf="@+id/category_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -176,13 +212,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/event_date_holder"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:layout_marginEnd="12dp"
                 android:background="@drawable/event_holder_corner_outline"
                 app:layout_constraintBottom_toBottomOf="@+id/placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="@+id/placeholder">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -200,10 +236,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:text="Date"
+                        android:text="---"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="16dp"
                         android:textStyle="bold"
+                        android:textAlignment="center"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -215,30 +252,36 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/event_duration_text"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:drawableStart="@drawable/time_duration"
                 android:drawablePadding="10dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Friday 4 - 6pm"
+                android:maxLines="2"
+                android:text="--- ---"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="@+id/event_location_text"
                 app:layout_constraintStart_toStartOf="@+id/event_location_text"
                 app:layout_constraintTop_toBottomOf="@+id/event_location_text" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/event_location_text"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="5dp"
                 android:drawableStart="@drawable/location"
                 android:drawablePadding="10dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/space_grotesk_medium"
-                android:text="Location"
+                android:maxLines="2"
+                android:text="--- ---"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/event_title_text" />
 
@@ -318,20 +361,17 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:progressDrawable="@drawable/loading_anim"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_border_line" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/empty_state_tv"
@@ -357,6 +397,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="10dp"
         android:clipChildren="false"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -366,6 +407,34 @@
         app:layout_constraintTop_toBottomOf="@+id/event_view_holder"
         tools:itemCount="4"
         tools:listitem="@layout/event_comments_viewholder" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/loading_anim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_border_line" />
+
+    <ImageView
+        android:id="@+id/retry_comment_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="10dp"
+        android:src="@drawable/retry_icon"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_state_tv" />
+
 
     <ImageView
         android:id="@+id/add_image_btn"
@@ -384,10 +453,11 @@
         android:id="@+id/comment_edit_text_holder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/event_holder_corner_outline"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/record_btn"
+        app:layout_constraintEnd_toStartOf="@+id/send_btn"
         app:layout_constraintStart_toEndOf="@+id/add_image_btn">
 
 
@@ -410,18 +480,28 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/record_btn"
+        android:id="@+id/send_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
         android:padding="10dp"
-        android:src="@drawable/mic_icon"
+        android:src="@drawable/send_icon"
         app:layout_constraintBottom_toBottomOf="@+id/comment_edit_text_holder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/add_image_btn"
         app:tint="?attr/colorOnSurface" />
+
+    <ProgressBar
+        android:id="@+id/comment_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/loading_anim"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/comment_edit_text_holder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/add_image_btn"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
