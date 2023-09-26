@@ -10,7 +10,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
-    private val eventsSharedPref = EventsSharedPreference().getSharedPref()
 
     private val retrofit by lazy {
         val  logging = HttpLoggingInterceptor()
@@ -32,16 +31,7 @@ class RetrofitInstance {
             .build()
 
     }
-    private val authRetrofit by lazy {
-
-
-    }
-
-    val apiService : EventsApi by lazy {
-        retrofit.create(EventsApi::class.java)
-    }
-    val apiServiceAuth: EventsApi by lazy {
-
+    private fun authRetrofit():EventsApi{
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -56,11 +46,18 @@ class RetrofitInstance {
             .build()
 
 
-        Retrofit.Builder()
+        return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client((client))
             .build().create(EventsApi::class.java)
+    }
+
+    val apiService : EventsApi by lazy {
+        retrofit.create(EventsApi::class.java)
+    }
+    val apiServiceAuth: EventsApi by lazy {
+        authRetrofit()
     }
 
 }

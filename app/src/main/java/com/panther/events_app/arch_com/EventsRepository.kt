@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit
 class EventsRepository {
     private val apiService = RetrofitInstance().apiService
     private val apiServiceAuth = RetrofitInstance().apiServiceAuth
-    private val eventsSharedPref = EventsSharedPreference().getSharedPref()
+
     fun signIn(authBody: AuthBody): Flow<Resource<LoginResponse>> {
 
         return callbackFlow {
@@ -91,7 +91,7 @@ class EventsRepository {
                 .addHeader("Content-Type", "application/json")
                 .addHeader(
                     "Authorization",
-                   "Bearer $eventsSharedPref"
+                   "Bearer ${EventsSharedPreference().getSharedPref()}"
                 )
                 .post(
                     jsonObj.toString().toRequestBody()
